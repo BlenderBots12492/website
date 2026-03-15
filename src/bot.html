@@ -1,40 +1,43 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
     <head>
         <title class="bot_name"></title>
-        <link rel="stylesheet" href="src/bot.css">
+        <link rel="stylesheet" href="src/bot.css" />
     </head>
     <body>
-        <br>
-        <h1 class="bot"></h1>
-        <br>
-        <img id="image"/>
-        
+        <br />
+        <h1 class="bot_name"></h1>
+        <br />
+        <img id="image" />
+
         <p id="des"></p>
 
         <script>
             try {
-            function getQueryParam(param) {
-                const urlParams = new URLSearchParams(window.location.search);
-                return urlParams.get(param);
-            }
-            fetch(`https://blenderbots12492.github.io/website/src/${getQueryParam("bot")}.json`).then(response => response.json()).then(
-                data => {
-                    const name = data.name;
-                    const descrition = data.description;
-                    const imageUrl = data.image;
-                    const names = document.querySelectorAll(".bot_name");
-                    for (const nameElement of names) {
-                        nameElement.innerHTML = data.name;
-                    }
-                    document.querySelector("#image").src = imageUrl;
-                    document.querySelector("#des").innerHTML = descrition;
-
+                function getQueryParam(param) {
+                    const urlParams = new URLSearchParams(
+                        window.location.search,
+                    );
+                    return urlParams.get(param);
                 }
-            );
+                fetch(
+                    `https://blenderbots12492.github.io/website/src/${getQueryParam("bot")}.json`,
+                )
+                    .then((response) => response.json())
+                    .then((data) => {
+                        const name = data.name;
+                        const descrition = data.description;
+                        const imageUrl = data.image;
+                        const names = document.querySelectorAll(".bot_name");
+                        for (const nameElement of names) {
+                            nameElement.innerHTML = data.name;
+                        }
+                        document.querySelector("#image").src = imageUrl;
+                        document.querySelector("#des").innerHTML = descrition;
+                    });
             } catch (e) {
-                alert(e)
+                alert(e);
             }
-            </script>
+        </script>
     </body>
-    </html>
+</html>
