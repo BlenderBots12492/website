@@ -1,158 +1,171 @@
 @import "tailwindcss";
 
 :root {
-  --neon-pink: #f8f005;
-  --neon-cyan: #00ffff;
-  --neon-yellow: #f8f005;
-  --bg-black: #0a0a0a;
-  --neon-magenta: #ff00ff;
+    --neon-pink: #f8f005;
+    --neon-cyan: #00ffff;
+    --neon-yellow: #f8f005;
+    --bg-black: #0a0a0a;
+    --neon-magenta: #ff00ff;
 }
 
 body {
-  background-color: var(--bg-black);
-  color: white;
-  font-family: 'Inter', sans-serif;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
+    background-color: var(--bg-black);
+    color: white;
+    font-family: "Inter", sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
 /* Scanline effect */
 body::before {
-  content: " ";
-  display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-  z-index: 2;
-  background-size: 100% 2px, 3px 100%;
-  pointer-events: none;
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background:
+        linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+        linear-gradient(
+            90deg,
+            rgba(255, 0, 0, 0.06),
+            rgba(0, 255, 0, 0.02),
+            rgba(0, 0, 255, 0.06)
+        );
+    z-index: 2;
+    background-size:
+        100% 2px,
+        3px 100%;
+    pointer-events: none;
 }
 
 .parallax {
-  background-color: #111; /* Fallback color */
-  background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1920");
-  min-height: 80vh;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-  border-bottom: 4px solid var(--neon-pink);
-  box-shadow: 0 0 20px var(--neon-pink);
-
+    background-color: #111; /* Fallback color */
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1920");
+    min-height: 80vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    border-bottom: 4px solid var(--neon-pink);
+    box-shadow: 0 0 20px var(--neon-pink);
 }
 
 .content {
-  padding: 60px 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
-.about, .ourRobots {
-  margin-bottom: 80px;
+.about,
+.ourRobots {
+    margin-bottom: 80px;
 }
 
-h1, h2 {
-  text-transform: uppercase;
-  letter-spacing: 2px;
+h1,
+h2 {
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-.about h1, .ourRobots h1 {
-  font-size: 3.5rem;
-  font-weight: 800;
-  margin-bottom: 2rem;
-  color: var(--neon-cyan);
-  text-shadow: 2px 2px 0px var(--neon-magenta);
+.about h1,
+.ourRobots h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    color: var(--neon-cyan);
+    text-shadow: 2px 2px 0px var(--neon-magenta);
 }
 
 .about p {
-  font-size: 1.2rem;
-  line-height: 1.6;
-  color: #ccc;
-  max-width: 800px;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #ccc;
+    max-width: 800px;
 }
 
 .bots {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
 }
 
 .bot {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-  padding: 30px;
-  text-align: center;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
 }
 
 .bot::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: var(--neon-pink);
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--neon-pink);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
 }
 
 .bot:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: var(--neon-pink);
-  box-shadow: 0 0 30px rgba(248, 240, 5, 0.3);;
-  transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--neon-pink);
+    box-shadow: 0 0 30px rgba(248, 240, 5, 0.3);
+    transform: translateY(-10px);
 }
 
 .bot:hover::before {
-  transform: scaleX(1);
+    transform: scaleX(1);
 }
 
 .botName {
-  font-size: 1.8rem;
-  margin-bottom: 20px;
-  color: white;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: white;
 }
 
 .bot img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  background: #222;
-  border-radius: 4px;
-  margin-top: 20px;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: #222;
+    border-radius: 4px;
+    margin-top: 20px;
 }
 
 /* Glitch Effect - Only on Hover for Robot Names and Outreach Titles */
 .glitch {
-  position: relative;
-  display: inline-block;
+    position: relative;
+    display: inline-block;
 }
 
 .glitch::before,
 .glitch::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  pointer-events: none;
-  opacity: 0; /* Hidden by default */
-  transition: opacity 0.2s ease;
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    pointer-events: none;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.2s ease;
 }
 
 /* trigger on hover for bots and outreach section boxes */
@@ -162,276 +175,452 @@ h1, h2 {
 .outreach:hover .glitch::after,
 .GraciousProfessionalism:hover .glitch::before,
 .GraciousProfessionalism:hover .glitch::after {
-  opacity: 1; /* Show on hover */
+    opacity: 1; /* Show on hover */
 }
 
 .bot:hover .glitch::before,
 .outreach:hover .glitch::before,
 .GraciousProfessionalism:hover .glitch::before {
-  left: 4px;
-  text-shadow: -3px 0 var(--neon-cyan);
-  clip-path: inset(44% 0 43% 0);
-  animation: glitch-anim 2s infinite linear alternate-reverse;
+    left: 4px;
+    text-shadow: -3px 0 var(--neon-cyan);
+    clip-path: inset(44% 0 43% 0);
+    animation: glitch-anim 2s infinite linear alternate-reverse;
 }
 
 .bot:hover .glitch::after,
 .outreach:hover .glitch::after,
 .GraciousProfessionalism:hover .glitch::after {
-  --slice-0: inset(50% 50% 50% 50%);
-  --slice-1: inset(80% -6px 0 0);
-  --slice-2: inset(50% -6px 30% 0);
-  --slice-3: inset(10% -6px 85% 0);
-  --slice-4: inset(40% -6px 43% 0);
-  --slice-5: inset(80% -6px 5% 0);
-  background-color: var(--bg-black);
-  text-shadow: -3px -3px 0px #f8f005, 3px 3px 0px #00e6f6;
-  clip-path: var(--slice-0);
-  animation: 1s glitch;
-  animation-timing-function: steps(2, end);
-  left: 0;
+    --slice-0: inset(50% 50% 50% 50%);
+    --slice-1: inset(80% -6px 0 0);
+    --slice-2: inset(50% -6px 30% 0);
+    --slice-3: inset(10% -6px 85% 0);
+    --slice-4: inset(40% -6px 43% 0);
+    --slice-5: inset(80% -6px 5% 0);
+    background-color: var(--bg-black);
+    text-shadow:
+        -3px -3px 0px #f8f005,
+        3px 3px 0px #00e6f6;
+    clip-path: var(--slice-0);
+    animation: 1s glitch;
+    animation-timing-function: steps(2, end);
+    left: 0;
 }
 
 @keyframes glitch-anim {
-  0% { clip-path: inset(31% 0 6% 0); transform: skew(0.85deg); }
-  5% { clip-path: inset(70% 0 29% 0); transform: skew(0.85deg); }
-  10% { clip-path: inset(29% 0 17% 0); transform: skew(0.85deg); }
-  15% { clip-path: inset(16% 0 9% 0); transform: skew(0.85deg); }
-  20% { clip-path: inset(2% 0 77% 0); transform: skew(0.85deg); }
-  25% { clip-path: inset(13% 0 86% 0); transform: skew(0.85deg); }
-  30% { clip-path: inset(80% 0 17% 0); transform: skew(0.85deg); }
-  35% { clip-path: inset(91% 0 2% 0); transform: skew(0.85deg); }
-  40% { clip-path: inset(79% 0 15% 0); transform: skew(0.85deg); }
-  45% { clip-path: inset(75% 0 60% 0); transform: skew(0.85deg); }
-  50% { clip-path: inset(59% 0 2% 0); transform: skew(0.85deg); }
-  55% { clip-path: inset(29% 0 87% 0); transform: skew(0.85deg); }
-  60% { clip-path: inset(15% 0 1% 0); transform: skew(0.85deg); }
-  65% { clip-path: inset(82% 0 70% 0); transform: skew(0.85deg); }
-  70% { clip-path: inset(97% 0 86% 0); transform: skew(0.85deg); }
-  75% { clip-path: inset(25% 0 60% 0); transform: skew(0.85deg); }
-  80% { clip-path: inset(34% 0 86% 0); transform: skew(0.85deg); }
-  85% { clip-path: inset(54% 0 51% 0); transform: skew(0.85deg); }
-  90% { clip-path: inset(15% 0 96% 0); transform: skew(0.85deg); }
-  95% { clip-path: inset(28% 0 10% 0); transform: skew(0.85deg); }
-  100% { clip-path: inset(45% 0 2% 0); transform: skew(0.85deg); }
+    0% {
+        clip-path: inset(31% 0 6% 0);
+        transform: skew(0.85deg);
+    }
+    5% {
+        clip-path: inset(70% 0 29% 0);
+        transform: skew(0.85deg);
+    }
+    10% {
+        clip-path: inset(29% 0 17% 0);
+        transform: skew(0.85deg);
+    }
+    15% {
+        clip-path: inset(16% 0 9% 0);
+        transform: skew(0.85deg);
+    }
+    20% {
+        clip-path: inset(2% 0 77% 0);
+        transform: skew(0.85deg);
+    }
+    25% {
+        clip-path: inset(13% 0 86% 0);
+        transform: skew(0.85deg);
+    }
+    30% {
+        clip-path: inset(80% 0 17% 0);
+        transform: skew(0.85deg);
+    }
+    35% {
+        clip-path: inset(91% 0 2% 0);
+        transform: skew(0.85deg);
+    }
+    40% {
+        clip-path: inset(79% 0 15% 0);
+        transform: skew(0.85deg);
+    }
+    45% {
+        clip-path: inset(75% 0 60% 0);
+        transform: skew(0.85deg);
+    }
+    50% {
+        clip-path: inset(59% 0 2% 0);
+        transform: skew(0.85deg);
+    }
+    55% {
+        clip-path: inset(29% 0 87% 0);
+        transform: skew(0.85deg);
+    }
+    60% {
+        clip-path: inset(15% 0 1% 0);
+        transform: skew(0.85deg);
+    }
+    65% {
+        clip-path: inset(82% 0 70% 0);
+        transform: skew(0.85deg);
+    }
+    70% {
+        clip-path: inset(97% 0 86% 0);
+        transform: skew(0.85deg);
+    }
+    75% {
+        clip-path: inset(25% 0 60% 0);
+        transform: skew(0.85deg);
+    }
+    80% {
+        clip-path: inset(34% 0 86% 0);
+        transform: skew(0.85deg);
+    }
+    85% {
+        clip-path: inset(54% 0 51% 0);
+        transform: skew(0.85deg);
+    }
+    90% {
+        clip-path: inset(15% 0 96% 0);
+        transform: skew(0.85deg);
+    }
+    95% {
+        clip-path: inset(28% 0 10% 0);
+        transform: skew(0.85deg);
+    }
+    100% {
+        clip-path: inset(45% 0 2% 0);
+        transform: skew(0.85deg);
+    }
 }
 
 @keyframes glitch {
-  0% {
-    clip-path: var(--slice-1);
-    transform: translate(-20px, -10px);
-  }
+    0% {
+        clip-path: var(--slice-1);
+        transform: translate(-20px, -10px);
+    }
 
-  10% {
-    clip-path: var(--slice-3);
-    transform: translate(10px, 10px);
-  }
+    10% {
+        clip-path: var(--slice-3);
+        transform: translate(10px, 10px);
+    }
 
-  20% {
-    clip-path: var(--slice-1);
-    transform: translate(-10px, 10px);
-  }
+    20% {
+        clip-path: var(--slice-1);
+        transform: translate(-10px, 10px);
+    }
 
-  30% {
-    clip-path: var(--slice-3);
-    transform: translate(0px, 5px);
-  }
+    30% {
+        clip-path: var(--slice-3);
+        transform: translate(0px, 5px);
+    }
 
-  40% {
-    clip-path: var(--slice-2);
-    transform: translate(-5px, 0px);
-  }
+    40% {
+        clip-path: var(--slice-2);
+        transform: translate(-5px, 0px);
+    }
 
-  50% {
-    clip-path: var(--slice-3);
-    transform: translate(5px, 0px);
-  }
+    50% {
+        clip-path: var(--slice-3);
+        transform: translate(5px, 0px);
+    }
 
-  60% {
-    clip-path: var(--slice-4);
-    transform: translate(5px, 10px);
-  }
+    60% {
+        clip-path: var(--slice-4);
+        transform: translate(5px, 10px);
+    }
 
-  70% {
-    clip-path: var(--slice-2);
-    transform: translate(-10px, 10px);
-  }
+    70% {
+        clip-path: var(--slice-2);
+        transform: translate(-10px, 10px);
+    }
 
-  80% {
-    clip-path: var(--slice-5);
-    transform: translate(20px, -10px);
-  }
+    80% {
+        clip-path: var(--slice-5);
+        transform: translate(20px, -10px);
+    }
 
-  90% {
-    clip-path: var(--slice-1);
-    transform: translate(-10px, 0px);
-  }
+    90% {
+        clip-path: var(--slice-1);
+        transform: translate(-10px, 0px);
+    }
 
-  100% {
-    clip-path: var(--slice-1);
-    transform: translate(0, 0);
-  }
+    100% {
+        clip-path: var(--slice-1);
+        transform: translate(0, 0);
+    }
 }
 
 /* Sponsors Section */
 .sponsors {
-  padding: 80px 0;
-  text-align: center;
+    padding: 80px 0;
+    text-align: center;
 }
 
 .sponsorsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 30px;
-  margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
 }
 
 .sponsor {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 30px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100px;
 }
 
 .sponsor:hover {
-  border-color: var(--neon-cyan);
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
-  transform: scale(1.05);
-  color: var(--neon-cyan);
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+    transform: scale(1.05);
+    color: var(--neon-cyan);
 }
 
 /* Contact Section */
 .contact {
-  padding: 80px 0;
-  text-align: center;
+    padding: 80px 0;
+    text-align: center;
 }
 
 .contactGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 40px;
-  margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 40px;
 }
 
 .contactCard {
-  background: rgba(255, 255, 255, 0.03);
-  border-left: 4px solid var(--neon-pink);
-  padding: 30px;
-  text-align: left;
-  transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 4px solid var(--neon-pink);
+    padding: 30px;
+    text-align: left;
+    transition: all 0.3s ease;
 }
 
 .contactCard:hover {
-  background: rgba(255, 255, 255, 0.05);
-  transform: translateX(10px);
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateX(10px);
 }
 
 .contactCard h3 {
-  color: var(--neon-pink);
-  margin-bottom: 15px;
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+    color: var(--neon-pink);
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-.contactCard a, .contactCard p {
-  color: #ccc;
-  text-decoration: none;
-  font-size: 1.1rem;
-  transition: color 0.2s ease;
+.contactCard a,
+.contactCard p {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.2s ease;
 }
 
 .contactCard a:hover {
-  color: white;
+    color: white;
 }
 
 .footer {
-  padding: 40px 0;
-  text-align: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  margin-top: 80px;
-  color: #666;
-  font-size: 0.9rem;
+    padding: 40px 0;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 80px;
+    color: #666;
+    font-size: 0.9rem;
 }
 
 .info h1 {
-  font-size: 2rem;
-  font-weight: 500;
-  color: var(--neon-cyan);
-  text-shadow: 2px 2px 0px var(--neon-magenta);
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--neon-cyan);
+    text-shadow: 2px 2px 0px var(--neon-magenta);
 }
 
 .scouts {
-  display: inline;
-  color: gray;
-  margin-bottom: 2rem;
-  cursor: pointer;
+    display: inline;
+    color: gray;
+    margin-bottom: 2rem;
+    cursor: pointer;
 }
 
 .outreachSec {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
 }
 .outreachSec div {
-  padding: 10px;
-  border-color: gray;
-  border-style: solid;
-  border-width: 2px;
-  border-radius: 10px;
-  width: 40%;
-  text-align: center;
-  transition: 0.2s;
-  box-shadow: -2px -2px 2px var(--neon-pink);
-  display:flex;
-  align-items: center;
-  flex-direction: column;
+    padding: 10px;
+    border-color: gray;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 10px;
+    width: 40%;
+    text-align: center;
+    transition: 0.2s;
+    box-shadow: -2px -2px 2px var(--neon-pink);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 .outreachSec div img {
-  width: 90%;
+    width: 90%;
 }
 .outreachSec div:hover {
-  border-color: var(--neon-yellow);
-  transform: scale(1.1);
-  box-shadow: 2px 2px 2px var(--neon-pink);
+    border-color: var(--neon-yellow);
+    transform: scale(1.1);
+    box-shadow: 2px 2px 2px var(--neon-pink);
 }
 .sponserUs a {
-  position: relative;
-  color: #fff;
-  text-decoration: none;
+    position: relative;
+    color: #fff;
+    text-decoration: none;
 }
 
 .sponserUs a:hover {
-  color: #fff;
+    color: #fff;
 }
 .sponserUs a::before {
-  content: "";
-  position: absolute;
-  display: block;
-  width: 100%;
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: var(--neon-cyan);
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--neon-cyan);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
 }
 .sponserUs a:hover::before {
-  transform: scaleX(1);
+    transform: scaleX(1);
 }
 .title {
-  position:absolute;
-  top: 20%;
-  text-align:center;
-  width: 100%;
-  font-weight: 500;
-  font-size:2em;
-  color: white;
-  text-shadow: 2px 2px 2px var(--neon-cyan);
+    position: absolute;
+    top: 20%;
+    text-align: center;
+    width: 100%;
+    font-weight: 500;
+}
+.title::before {
+    font-size: 2em;
+    color: white;
+    text-shadow: 2px 2px 2px var(--neon-cyan);
+    font: monospace; /*required for anim*/
+    font-weight: 800;
+    font-size: 2em;
+    content: "";
+    animation: 2s loadAnim forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes loadAnim {
+    0% {
+        content: "3";
+    }
+    3% {
+        content: "(^";
+    }
+    6% {
+        content: "^#!";
+    }
+    9% {
+        content: "#^9$";
+    }
+    12% {
+        content: "$0*)5";
+    }
+    16% {
+        content: "7@1$1(";
+    }
+    19% {
+        content: "8#39)*!";
+    }
+    22% {
+        content: "!8@7!1#)";
+    }
+    25% {
+        content: "!^!*)7!#$";
+    }
+    28% {
+        content: "&$(^^(*%)$";
+    }
+    31% {
+        content: ")91*#!#6@*8";
+    }
+    34% {
+        content: "^&7@8@(#^^69";
+    }
+    38% {
+        content: "3*$(96%&!#&^6";
+    }
+    41% {
+        content: "#^&!^23$4&7#&%";
+    }
+    44% {
+        content: "*^)%(!4956$##10";
+    }
+    47% {
+        content: "^$^^&*1)12$^0*8(";
+    }
+    50% {
+        content: "T$^^&*1)12$^0*8(";
+    }
+    53% {
+        content: "TH^^&*1)12$^0*8(";
+    }
+    56% {
+        content: "THE^&*1)12$^0*8(";
+    }
+    59% {
+        content: "THE &*1)12$^0*8(";
+    }
+    62% {
+        content: "THE B*1)12$^0*8(";
+    }
+    66% {
+        content: "THE BL1)12$^0*8(";
+    }
+    69% {
+        content: "THE BLE)12$^0*8(";
+    }
+    72% {
+        content: "THE BLEN12$^0*8(";
+    }
+    75% {
+        content: "THE BLEND2$^0*8(";
+    }
+    78% {
+        content: "THE BLENDE$^0*8(";
+    }
+    81% {
+        content: "THE BLENDER^0*8(";
+    }
+    84% {
+        content: "THE BLENDER 0*8(";
+    }
+    88% {
+        content: "THE BLENDER B*8(";
+    }
+    91% {
+        content: "THE BLENDER BO8(";
+    }
+    94% {
+        content: "THE BLENDER BOT(";
+    }
+    97% {
+        content: "THE BLENDER BOTS";
+    }
+    100% {
+        content: "THE BLENDER BOTS";
+    }
 }
