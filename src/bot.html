@@ -1,43 +1,677 @@
-<!doctype html>
-<html>
-    <head>
-        <title class="bot_name"></title>
-        <link rel="stylesheet" href="src/bot.css" />
-    </head>
-    <body>
-        <br />
-        <h1 class="bot_name"></h1>
-        <br />
-        <img id="image" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robot | Blender Bots</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="bot.css">
+</head>
+<body>
+    <canvas id="prism"></canvas>
+    <div class="page">
+        <header class="page-header">
+            <a class="back" href="../index.html">&larr; Back</a>
+            <div class="crumbs">
+                <span class="crumb-label">FTC Robotics</span>
+                <span class="crumb-divider">&bull;</span>
+                <span class="crumb-team">The Blender Bots</span>
+            </div>
+        </header>
 
-        <p id="des"></p>
+        <main class="bot-layout">
+            <section class="bot-text">
+                <p class="label">Robot Profile</p>
+                <h1 class="ascii-text bot-title glitch decrypt animated-content" data-text="" data-speed="40" data-max="12" data-delay="140" id="botName"></h1>
+                <p class="description animated-content" id="des"></p>
+                <p class="variant-text animated-content" id="variantText"></p>
+                <p class="notes animated-content" id="notes"></p>
+            </section>
 
-        <script>
-            try {
-                function getQueryParam(param) {
-                    const urlParams = new URLSearchParams(
-                        window.location.search,
-                    );
-                    return urlParams.get(param);
-                }
-                fetch(
-                    `https://blenderbots12492.github.io/website/src/${getQueryParam("bot")}.json`,
-                )
-                    .then((response) => response.json())
-                    .then((data) => {
-                        const name = data.name;
-                        const descrition = data.description;
-                        const imageUrl = data.image;
-                        const names = document.querySelectorAll(".bot_name");
-                        for (const nameElement of names) {
-                            nameElement.innerHTML = data.name;
+            <div class="bot-media">
+                <div class="glow-frame">
+                    <img id="image" alt="Robot image" class="animated-content">
+                </div>
+            </div>
+        </main>
+
+        <section class="badge-section">
+            <div class="section-heading ascii-text glitch-hover" data-text="Quick Badges">Quick Badges</div>
+            <div class="badge-row" id="badgeRow"></div>
+        </section>
+
+        <section class="stats-section">
+            <div class="stats-title ascii-text animated-content glitch-hover" data-text="Quick Specs">Quick Specs</div>
+            <div class="stats-grid" id="statsGrid"></div>
+        </section>
+
+        <section class="stack-section">
+            <div class="stack-title ascii-text glitch-hover" data-text="Capabilities Stack">Capabilities Stack</div>
+            <div class="stack" id="stackCards"></div>
+        </section>
+
+        <section class="telemetry-section">
+            <div class="section-heading ascii-text glitch-hover" data-text="Vitals">Vitals</div>
+            <div class="telemetry-grid" id="telemetryGrid"></div>
+        </section>
+
+        <section class="checklist-section">
+            <div class="section-heading ascii-text glitch-hover" data-text="Match Checklist">Match Checklist</div>
+            <div class="checklist" id="checklist"></div>
+        </section>
+
+        <section class="timeline-section">
+            <div class="section-heading ascii-text glitch-hover" data-text="Build Timeline">Build Timeline</div>
+            <div class="timeline" id="timeline"></div>
+        </section>
+
+        <section class="stepper-section">
+            <div class="section-heading ascii-text glitch-hover" data-text="Build Steps">Build Steps</div>
+            <div class="stepper" id="stepper"></div>
+        </section>
+
+        <section class="plays-section">
+            <div class="section-heading ascii-text glitch-hover" data-text="Playbook">Playbook</div>
+            <div class="play-grid" id="playbook"></div>
+        </section>
+
+        <section class="gallery-section">
+            <div class="section-heading ascii-text glitch-hover" data-text="Photo Rail">Photo Rail</div>
+            <div class="gallery-grid" id="galleryGrid"></div>
+        </section>
+    </div>
+
+    <div class="photo-modal" id="photoModal" aria-hidden="true">
+        <div class="photo-modal-backdrop" id="photoModalBackdrop"></div>
+        <div class="photo-modal-content">
+            <button class="photo-close" id="photoClose" aria-label="Close">&times;</button>
+            <img id="photoModalImg" alt="Expanded gallery image">
+            <div class="photo-caption" id="photoModalCaption"></div>
+            <button class="photo-nav prev" id="photoPrev" aria-label="Previous">&#10094;</button>
+            <button class="photo-nav next" id="photoNext" aria-label="Next">&#10095;</button>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            const decryptChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_+";
+            const decryptState = new WeakMap();
+
+            function setupDecrypt(el, options = {}) {
+                if (!el) return;
+                const state = decryptState.get(el) || {};
+                state.speed = parseInt(el.dataset.speed, 10) || options.speed || 50;
+                state.max = parseInt(el.dataset.max, 10) || options.max || 10;
+                state.text = (options.text || el.dataset.text || el.textContent || '').trim();
+                state.delay = Number.isFinite(parseInt(el.dataset.delay, 10)) ? parseInt(el.dataset.delay, 10) : options.delay;
+                clearInterval(state.interval);
+                decryptState.set(el, state);
+
+                const randomize = (revealCount) => state.text
+                    .split("")
+                    .map((char, i) => {
+                        if (char === " ") return " ";
+                        if (i < revealCount) return state.text[i];
+                        return decryptChars[Math.floor(Math.random() * decryptChars.length)];
+                    }).join("");
+
+                const start = () => {
+                    clearInterval(state.interval);
+                    let iteration = 0;
+                    state.interval = setInterval(() => {
+                        el.textContent = randomize(iteration);
+                        iteration += state.text.length / state.max;
+                        if (iteration >= state.text.length) {
+                            clearInterval(state.interval);
+                            el.textContent = state.text;
                         }
-                        document.querySelector("#image").src = imageUrl;
-                        document.querySelector("#des").innerHTML = descrition;
-                    });
-            } catch (e) {
-                alert(e);
+                    }, state.speed);
+                };
+
+                const reset = () => {
+                    clearInterval(state.interval);
+                    el.textContent = state.text;
+                };
+
+                if (!state.bound) {
+                    el.addEventListener("mouseenter", start);
+                    el.addEventListener("mouseleave", reset);
+                    state.bound = true;
+                }
+
+                const delay = Number.isFinite(state.delay) ? state.delay : (options.index ?? 0) * 120;
+                setTimeout(start, Math.max(0, delay || 0));
             }
-        </script>
-    </body>
+
+            // Prism canvas background
+            const prismCanvas = document.getElementById('prism');
+            const prismCtx = prismCanvas.getContext('2d');
+            let prismW, prismH, prismT = 0;
+
+            function resizePrism() {
+                prismW = prismCanvas.width = window.innerWidth;
+                prismH = prismCanvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resizePrism);
+            resizePrism();
+
+            function drawPrism() {
+                prismT += 0.01;
+                const styles = getComputedStyle(document.body);
+                const tone1 = styles.getPropertyValue('--bg-tone1').trim() || '#00ffc8';
+                const tone2 = styles.getPropertyValue('--bg-tone2').trim() || '#ffb450';
+                const tone3 = styles.getPropertyValue('--bg-tone3').trim() || '#008cff';
+                const base = styles.getPropertyValue('--bg-base').trim() || '#050505';
+
+                prismCtx.clearRect(0, 0, prismW, prismH);
+                const grad = prismCtx.createLinearGradient(0, 0, prismW, prismH);
+                grad.addColorStop(0, base);
+                grad.addColorStop(1, '#050505');
+                prismCtx.fillStyle = grad;
+                prismCtx.fillRect(0, 0, prismW, prismH);
+
+                const gridSize = 120;
+                prismCtx.lineWidth = 1.25;
+                prismCtx.globalAlpha = 0.7;
+
+                const drawLines = (color, fn) => {
+                    prismCtx.strokeStyle = color;
+                    for (let i = -gridSize; i < (fn === 'v' ? prismW : prismH) + gridSize; i += gridSize) {
+                        const wobble = fn === 'v'
+                            ? Math.sin(prismT * 0.8 + i * 0.012) * 14
+                            : Math.cos(prismT * 0.7 + i * 0.014) * 14;
+                        prismCtx.beginPath();
+                        if (fn === 'v') {
+                            prismCtx.moveTo(i + wobble, 0);
+                            prismCtx.lineTo(i + wobble, prismH);
+                        } else {
+                            prismCtx.moveTo(0, i + wobble);
+                            prismCtx.lineTo(prismW, i + wobble);
+                        }
+                        prismCtx.stroke();
+                    }
+                };
+
+                drawLines(tone1, 'v');
+                drawLines(tone2, 'h');
+
+                prismCtx.globalAlpha = 0.28;
+                prismCtx.strokeStyle = tone3;
+                prismCtx.lineWidth = 0.8;
+                for (let x = -gridSize / 2; x < prismW + gridSize; x += gridSize) {
+                    for (let y = -gridSize / 2; y < prismH + gridSize; y += gridSize) {
+                        const jitter = Math.sin(prismT + (x + y) * 0.01) * 6;
+                        prismCtx.strokeRect(x + jitter, y - jitter, gridSize, gridSize);
+                    }
+                }
+
+                prismCtx.globalAlpha = 0.5;
+                prismCtx.fillStyle = tone1;
+                for (let i = 0; i < 40; i++) {
+                    const px = Math.random() * prismW;
+                    const py = Math.random() * prismH;
+                    prismCtx.fillRect(px, py, 1.8, 1.8);
+                }
+                prismCtx.globalAlpha = 1;
+
+                requestAnimationFrame(drawPrism);
+            }
+            drawPrism();
+
+            const fallbackImage = 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&q=80&w=1200';
+            const params = new URLSearchParams(window.location.search);
+            const botKey = params.get('bot');
+            const nameEl = document.getElementById('botName');
+            const descEl = document.getElementById('des');
+            const imageEl = document.getElementById('image');
+            const variantEl = document.getElementById('variantText');
+            const stackEl = document.getElementById('stackCards');
+            const statsEl = document.getElementById('statsGrid');
+            const notesEl = document.getElementById('notes');
+            const badgesEl = document.getElementById('badgeRow');
+            const telemetryEl = document.getElementById('telemetryGrid');
+            const checklistEl = document.getElementById('checklist');
+            const timelineEl = document.getElementById('timeline');
+            const stepperEl = document.getElementById('stepper');
+            const playsEl = document.getElementById('playbook');
+            const galleryEl = document.getElementById('galleryGrid');
+            const body = document.body;
+            const defaultFeatures = {
+                badges: true,
+                stats: true,
+                stack: true,
+                telemetry: true,
+                checklist: true,
+                timeline: true,
+                stepper: true,
+                plays: true,
+                gallery: true
+            };
+
+            setupDecrypt(nameEl, { index: 0 });
+            document.querySelectorAll('.decrypt').forEach((el, idx) => {
+                if (el === nameEl) return;
+                setupDecrypt(el, { index: idx + 1 });
+            });
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) entry.target.classList.add('visible');
+                });
+            }, { threshold: 0.35 });
+
+            if (!botKey) {
+                nameEl.textContent = 'Robot not found';
+                descEl.textContent = 'Add ?bot=NAME to the URL so we know which profile to load.';
+                imageEl.src = fallbackImage;
+                return;
+            }
+
+            applyTheme(botKey);
+
+            const dataSources = [
+                `${botKey}.json`,
+                `https://blenderbots12492.github.io/website/src/${botKey}.json`
+            ];
+
+            const fallbackData = {
+                badges: [],
+                telemetry: [],
+                checklist: [],
+                timeline: [],
+                stepper: { current: 0, steps: [] },
+                plays: [],
+                gallery: [],
+                features: { ...defaultFeatures }
+            };
+
+            loadProfile(0);
+
+            function loadProfile(index) {
+                const rawSource = dataSources[index];
+                const source = `${rawSource}${rawSource.includes('?') ? '&' : '?'}v=${Date.now()}`;
+                fetch(source, { cache: 'no-store' })
+                    .then((resp) => {
+                        if (!resp.ok) throw new Error(`No profile found at ${source}`);
+                        return resp.json();
+                    })
+                    .then(renderProfile)
+                    .catch((err) => {
+                        console.warn(err);
+                        if (index + 1 < dataSources.length) {
+                            loadProfile(index + 1);
+                            return;
+                        }
+                        handleFailure(err);
+                    });
+            }
+
+            function renderProfile(data) {
+                const features = { ...defaultFeatures, ...(data.features || {}) };
+                const botName = data.name || botKey.replace(/_/g, ' ');
+                const heroTitle = data.heroTitle || botName;
+                applyTheme(botKey, data.theme, data.glitch, data.background);
+                document.title = `${botName} | Blender Bots`;
+                nameEl.textContent = heroTitle;
+                nameEl.setAttribute('data-text', heroTitle);
+                setupDecrypt(nameEl, { text: heroTitle, index: 0 });
+                descEl.textContent = data.description || '';
+                notesEl.textContent = data.notes || '';
+                notesEl.style.display = data.notes ? 'block' : 'none';
+                setImage(data.image || fallbackImage);
+                startVariants(data.variants || []);
+                renderBadges(features.badges, data.badges || []);
+                renderStats(features.stats, data.stats || []);
+                renderStack(features.stack, data.stack || []);
+                renderTelemetry(features.telemetry, data.telemetry || []);
+                renderChecklist(features.checklist, data.checklist || []);
+                renderTimeline(features.timeline, data.timeline || []);
+                renderStepper(features.stepper, data.stepper || fallbackData.stepper);
+                renderPlays(features.plays, data.plays || []);
+                renderGallery(features.gallery, data.gallery || []);
+            }
+
+            function handleFailure(err) {
+                console.error(err);
+                nameEl.textContent = 'Profile unavailable';
+                nameEl.setAttribute('data-text', 'Profile unavailable');
+                setupDecrypt(nameEl, { text: 'Profile unavailable', index: 0 });
+                descEl.textContent = '';
+                setImage(fallbackImage);
+                startVariants([]);
+                renderBadges(true, []);
+                renderStats(true, []);
+                renderStack(true, []);
+                renderTelemetry(true, []);
+                renderChecklist(true, []);
+                renderTimeline(true, []);
+                renderStepper(true, fallbackData.stepper);
+                renderPlays(true, []);
+                renderGallery(true, []);
+            }
+
+            function setImage(src) {
+                imageEl.src = src;
+                imageEl.onload = () => imageEl.classList.add('loaded');
+                imageEl.onerror = () => {
+                    if (src !== fallbackImage) {
+                        setImage(fallbackImage);
+                    }
+                };
+            }
+
+            function startVariants(list) {
+                if (!list || !list.length) return;
+                let index = 0;
+                variantEl.textContent = list[0];
+                setInterval(() => {
+                    index = (index + 1) % list.length;
+                    variantEl.textContent = list[index];
+                    variantEl.classList.remove('pulse-text');
+                    void variantEl.offsetWidth;
+                    variantEl.classList.add('pulse-text');
+                }, 2600);
+            }
+
+            function renderStack(enabled, items) {
+                stackEl.innerHTML = '';
+                const section = stackEl.closest('.stack-section');
+                if (!enabled || !items.length) {
+                    section.style.display = 'none';
+                    return;
+                }
+                section.style.display = 'block';
+                items.forEach((item, idx) => {
+                    const card = document.createElement('article');
+                    card.className = 'stack-card animated-content';
+                    card.innerHTML = `<h3 class="glitch-hover" data-text="${item.title || 'Capability'}">${item.title || 'Capability'}</h3><p>${item.body || ''}</p>`;
+                    card.style.top = `${24 + idx * 24}px`;
+                    card.style.setProperty('--delay', `${120 * idx}ms`);
+                    stackEl.appendChild(card);
+                    observer.observe(card);
+                });
+            }
+
+            function renderStats(enabled, items) {
+                statsEl.innerHTML = '';
+                const section = statsEl.closest('.stats-section');
+                if (!enabled || !items.length) {
+                    section.style.display = 'none';
+                    return;
+                }
+                section.style.display = 'block';
+                items.forEach((item, idx) => {
+                    const stat = document.createElement('div');
+                    stat.className = 'stat animated-content';
+                    stat.style.setProperty('--delay', `${80 * idx}ms`);
+                    stat.innerHTML = `<span class="stat-label glitch-hover" data-text="${item.label || 'Spec'}">${item.label || 'Spec'}</span><span class="stat-value">${item.value || ''}</span>`;
+                    statsEl.appendChild(stat);
+                    observer.observe(stat);
+                });
+            }
+
+            function renderBadges(enabled, items) {
+                badgesEl.innerHTML = '';
+                const section = badgesEl.closest('.badge-section');
+                if (!enabled || !items.length) {
+                    section.style.display = 'none';
+                    return;
+                }
+                section.style.display = 'block';
+                items.forEach((text, idx) => {
+                    const pill = document.createElement('span');
+                    pill.className = 'badge-chip animated-content';
+                    pill.textContent = text;
+                    pill.style.setProperty('--delay', `${60 * idx}ms`);
+                    badgesEl.appendChild(pill);
+                    observer.observe(pill);
+                });
+            }
+
+            function renderTelemetry(enabled, items) {
+                telemetryEl.innerHTML = '';
+                const section = telemetryEl.closest('.telemetry-section');
+                if (!enabled || !items.length) {
+                    section.style.display = 'none';
+                    return;
+                }
+                section.style.display = 'grid';
+                items.forEach((item, idx) => {
+                    const fill = Math.min(100, Math.max(0, item.fill ?? 65));
+                    const card = document.createElement('div');
+                    card.className = 'telemetry-card animated-content';
+                    card.style.setProperty('--delay', `${70 * idx}ms`);
+                    card.innerHTML = `
+                        <div class="telemetry-label">${item.label || 'Metric'}</div>
+                        <div class="telemetry-value">${item.value || ''}</div>
+                        <div class="telemetry-bar"><span style="width:${fill}%"></span></div>
+                    `;
+                    telemetryEl.appendChild(card);
+                    observer.observe(card);
+                });
+            }
+
+            function renderChecklist(enabled, items) {
+                checklistEl.innerHTML = '';
+                const section = checklistEl.closest('.checklist-section');
+                if (!enabled || !items.length) {
+                    section.style.display = 'none';
+                    return;
+                }
+                section.style.display = 'grid';
+                items.forEach((item, idx) => {
+                    const card = document.createElement('div');
+                    card.className = `check-card animated-content status-${item.status || 'todo'}`;
+                    card.style.setProperty('--delay', `${60 * idx}ms`);
+                    card.innerHTML = `
+                        <div class="check-status"></div>
+                        <div class="check-text">${item.item || ''}</div>
+                        <div class="check-tag">${(item.status || 'todo').toUpperCase()}</div>
+                    `;
+                    checklistEl.appendChild(card);
+                    observer.observe(card);
+                });
+            }
+
+            function renderTimeline(enabled, items) {
+                timelineEl.innerHTML = '';
+                const section = timelineEl.closest('.timeline-section');
+                if (!enabled || !items.length) {
+                    section.style.display = 'none';
+                    return;
+                }
+                section.style.display = 'block';
+                items.forEach((item, idx) => {
+                    const row = document.createElement('div');
+                    row.className = 'timeline-item animated-content';
+                    row.style.setProperty('--delay', `${90 * idx}ms`);
+                    row.innerHTML = `
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-meta">
+                            <span class="timeline-year">${item.year || ''}</span>
+                            <h4>${item.title || ''}</h4>
+                            <p>${item.detail || ''}</p>
+                        </div>
+                    `;
+                    timelineEl.appendChild(row);
+                    observer.observe(row);
+                });
+            }
+
+            function renderPlays(enabled, items) {
+                playsEl.innerHTML = '';
+                const section = playsEl.closest('.plays-section');
+                if (!enabled || !items.length) {
+                    section.style.display = 'none';
+                    return;
+                }
+                section.style.display = 'grid';
+                items.forEach((item, idx) => {
+                    const card = document.createElement('article');
+                    card.className = 'play-card animated-content';
+                    card.style.setProperty('--delay', `${70 * idx}ms`);
+                    card.innerHTML = `
+                        <div class="play-top">
+                            <span class="play-time">${item.time || ''}</span>
+                            <span class="play-title glitch-hover" data-text="${item.title || 'Play'}">${item.title || 'Play'}</span>
+                        </div>
+                        <p>${item.detail || ''}</p>
+                    `;
+                    playsEl.appendChild(card);
+                    observer.observe(card);
+                });
+            }
+
+            function renderGallery(enabled, items) {
+                galleryEl.innerHTML = '';
+                const section = galleryEl.closest('.gallery-section');
+                if (!enabled || !items.length) {
+                    section.style.display = 'none';
+                    return;
+                }
+                section.style.display = 'grid';
+                galleryItems = items.map((item, idx) => {
+                    const figure = document.createElement('figure');
+                    figure.className = 'gallery-item animated-content';
+                    figure.style.setProperty('--delay', `${60 * idx}ms`);
+                    const img = document.createElement('img');
+                    img.src = item.src || fallbackImage;
+                    img.alt = item.alt || 'Gallery image';
+                    const caption = document.createElement('figcaption');
+                    caption.textContent = item.alt || 'Gallery image';
+                    figure.appendChild(img);
+                    figure.appendChild(caption);
+                    figure.addEventListener('click', () => openPhotoModal(idx));
+                    galleryEl.appendChild(figure);
+                    observer.observe(figure);
+                    return { src: img.src, alt: caption.textContent };
+                });
+            }
+
+            let galleryItems = [];
+            let currentPhoto = 0;
+
+            function openPhotoModal(index) {
+                if (!galleryItems.length) return;
+                currentPhoto = Math.max(0, Math.min(index, galleryItems.length - 1));
+                updatePhotoModal();
+                photoModal.classList.add('open');
+                photoModal.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('no-scroll');
+            }
+
+            function closePhotoModal() {
+                photoModal.classList.remove('open');
+                photoModal.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('no-scroll');
+            }
+
+            function updatePhotoModal() {
+                const item = galleryItems[currentPhoto];
+                photoModalImg.src = item.src;
+                photoModalImg.alt = item.alt || 'Gallery image';
+                photoModalCaption.textContent = item.alt || '';
+            }
+
+            function nextPhoto(delta = 1) {
+                if (!galleryItems.length) return;
+                currentPhoto = (currentPhoto + delta + galleryItems.length) % galleryItems.length;
+                updatePhotoModal();
+            }
+
+            function renderStepper(enabled, stepper) {
+                stepperEl.innerHTML = '';
+                const section = stepperEl.closest('.stepper-section');
+                if (!enabled || !stepper || !stepper.steps || !stepper.steps.length) {
+                    section.style.display = 'none';
+                    return;
+                }
+                section.style.display = 'block';
+                const current = Math.max(0, Math.min(stepper.current ?? 0, stepper.steps.length - 1));
+                stepper.steps.forEach((step, idx) => {
+                    const node = document.createElement('div');
+                    const status = idx < current ? 'done' : idx === current ? 'current' : 'todo';
+                    node.className = `stepper-node animated-content status-${status}`;
+                    node.style.setProperty('--delay', `${70 * idx}ms`);
+                    node.innerHTML = `
+                        <div class="stepper-dot"></div>
+                        <div class="stepper-meta">
+                            <div class="stepper-title">${step.title || 'Step'}</div>
+                            <div class="stepper-desc">${step.detail || ''}</div>
+                        </div>
+                    `;
+                    stepperEl.appendChild(node);
+                    observer.observe(node);
+                });
+            }
+
+            function applyTheme(key, themeData, glitchData, backgroundData) {
+                const bgDefaults = {
+                    colors: {
+                        tone1: '#00ffc8',
+                        tone2: '#ffb450',
+                        tone3: '#008cff',
+                        base: '#050505'
+                    }
+                };
+                const palettes = {
+                    AIM: { hue: '24deg', primary: '#f8f005', accent: '#fcd34d', magenta: '#facc15' },
+                    BUMBLE_BEE: { hue: '55deg', primary: '#fef08a', accent: '#fbbf24', magenta: '#f59e0b' },
+                    strugie: { hue: '90deg', primary: '#9ef49d', accent: '#c4ff9c', magenta: '#98fb98' }
+                };
+                const palette = themeData || palettes[key] || { hue: '45deg', primary: '#f8f005', accent: '#f6e05e', magenta: '#fbbf24' };
+                body.style.setProperty('--prism-hue', palette.hue);
+                body.style.setProperty('--neon-yellow', palette.primary);
+                body.style.setProperty('--neon-cyan', palette.accent);
+                body.style.setProperty('--neon-magenta', palette.magenta);
+                body.style.setProperty('--neon-pink', palette.primary);
+                const glitch = glitchData || {};
+                const glitchPrimary = glitch.primary || palette.accent;
+                const glitchSecondary = glitch.secondary || palette.primary;
+                body.style.setProperty('--glitch-primary', glitchPrimary);
+                body.style.setProperty('--glitch-secondary', glitchSecondary);
+                const glitchEnabled = glitch.enabled !== false;
+                if (!glitchEnabled) {
+                    nameEl.classList.remove('glitch');
+                } else {
+                    nameEl.classList.add('glitch');
+                }
+                const colorCfg = (typeof backgroundData === 'object' && backgroundData !== null && backgroundData.colors) || bgDefaults.colors;
+                body.style.setProperty('--bg-tone1', colorCfg.tone1 || bgDefaults.colors.tone1);
+                body.style.setProperty('--bg-tone2', colorCfg.tone2 || bgDefaults.colors.tone2);
+                body.style.setProperty('--bg-tone3', colorCfg.tone3 || bgDefaults.colors.tone3);
+                body.style.setProperty('--bg-base',  colorCfg.base  || bgDefaults.colors.base);
+                body.style.background = 'transparent';
+            }
+
+            document.querySelectorAll('.animated-content').forEach((el, idx) => {
+                el.style.setProperty('--delay', `${80 * idx}ms`);
+                observer.observe(el);
+            });
+
+            // Photo modal wiring
+            const photoModal = document.getElementById('photoModal');
+            const photoModalImg = document.getElementById('photoModalImg');
+            const photoModalCaption = document.getElementById('photoModalCaption');
+            const photoClose = document.getElementById('photoClose');
+            const photoPrev = document.getElementById('photoPrev');
+            const photoNext = document.getElementById('photoNext');
+            const photoModalBackdrop = document.getElementById('photoModalBackdrop');
+
+            photoClose.addEventListener('click', closePhotoModal);
+            photoPrev.addEventListener('click', () => nextPhoto(-1));
+            photoNext.addEventListener('click', () => nextPhoto(1));
+            photoModalBackdrop.addEventListener('click', closePhotoModal);
+            document.addEventListener('keydown', (e) => {
+                if (photoModal.classList.contains('open')) {
+                    if (e.key === 'Escape') closePhotoModal();
+                    if (e.key === 'ArrowLeft') nextPhoto(-1);
+                    if (e.key === 'ArrowRight') nextPhoto(1);
+                }
+            });
+        })();
+    </script>
+</body>
 </html>

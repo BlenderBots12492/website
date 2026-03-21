@@ -1,5 +1,102 @@
 {
-    "name":"AIM",
-    "description":"It aims at the april tags and such.",
-    "image":"/src/img/AIM.png"
+  "name": "AIM",
+  "heroTitle": "AIM",
+  "description": "nothing here",
+  "image": "https://images.unsplash.com/photo-1581091012184-5c7b2e1a4973?auto=format&fit=crop&q=80&w=1200",
+  "variants": [
+    "poo",
+    "non poo",
+    "hehe ha",
+    "debugging"
+  ],
+  "stack": [
+    { "title": "Vision", "body": "BEST COLORS EVERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR." },
+    { "title": "path", "body": "start at home then to grave" },
+    { "title": "Intake", "body": "takes thingys duhhh" },
+    { "title": "Drivebase", "body": "none hehehe" }
+  ],
+  "theme": {
+    "hue": "76deg",
+    "primary": "#ff8200",
+    "accent": "#ff6200",
+    "magenta": "#736e45",
+    "components": {
+      "bg": "rgba(115, 110, 69, 0.6)",
+      "border": "rgba(115, 110, 69, 0.16)",
+      "shadow": "0 12px 28px rgba(0,0,0,0.36)",
+      "solid": false
+    }
+  },
+  "glitch": {
+    "enabled": true,
+    "primary": "#ff8200",
+    "secondary": "#ff8200"
+  },
+  "features": {
+    "badges": true,
+    "stats": true,
+    "stack": true,
+    "telemetry": true,
+    "checklist": true,
+    "timeline": true,
+    "plays": false,
+    "gallery": true
+  },
+  "stats": [
+    { "label": "Drive", "value": "Tank with 50mm " },
+    { "label": "Weight", "value": "43 tons" },
+    { "label": "Player", "value": "1 driver + 1 operator + 1 human bystander" },
+    { "label": "Auto", "value": "2.5 sample avg + 15 ball loss" },
+    { "label": "Camera", "value": "camera mannnnnn" },
+    { "label": "Endgame", "value": "8s climb to the roof" }
+  ],
+  "badges": [
+    "huh",
+    "yes",
+    "poo a cools",
+    "things i guess",
+    "YES - but cooler",
+    "Swap battery <30s or explode",
+    "field eater",
+    "Fast hang"
+  ],
+  "timeline": [
+    { "year": "Aug 34", "title": "Kickoff", "detail": "no" },
+    { "year": "Sep 34 ", "title": "Kickoff Kickoff", "detail": "noo" },
+    { "year": "Oct 34  ", "title": "Kickoff Kickoff Kickoff", "detail": "nooo" },
+    { "year": "Nov 34 ", "title": "Kickoff Kickoff Kickoff Kickoff", "detail": "noooo" },
+    { "year": "Dec 34", "title": "Kickoff Kickoff Kickoff Kickoff Kickoff", "detail": "noooooo" },
+    { "year": "Jan 34", "title": "non Kickoff", "detail": "still no " }
+  ],
+  "checklist": [
+    { "item": "Calibrate cameras", "status": "todo" },
+    { "item": "Tighten intake belt", "status": "todo" },
+    { "item": "field map", "status": "ready" },
+    { "item": "Swap battery", "status": "ready" },
+    { "item": "Fan boom test", "status": "todo" },
+    { "item": "Upload latest log", "status": "todo" }
+  ],
+  "telemetry": [
+    { "label": "Cycle time", "value": "9.0 s", "fill": 0 },
+    { "label": "Auto reliability", "value": "9000%", "fill": 1000 },
+    { "label": "Vision uptime", "value": "NONE BURH", "fill": 0 },
+    { "label": "CPU ", "value": "all", "fill": 67 },
+    { "label": "Battery health", "value": "88%", "fill": 45 }
+  ],
+
+  "gallery": [
+    { "src": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=1200", "alt": "bot" },
+    { "src": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200", "alt": "bot" },
+    { "src": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1200", "alt": "bot" },
+    { "src": "https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&q=80&w=1200", "alt": "bot" }
+  ],
+  "notes": "this is for a robot duhhh",
+  "background": {
+    "colors": {
+      "tone1": "#543418",
+      "tone2": "#78471d",
+      "tone3": "#0c4d61",
+      "base": "#0c4d61"
+    }
+  }
 }

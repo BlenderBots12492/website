@@ -1,0 +1,108 @@
+{
+  "name": "strugie",
+  "heroTitle": "strugie",
+  "description": "Underrated on the outside, absolutely dialed on the inside. Built to be the reliable closer when matches get weird.",
+  "image": "https://images.unsplash.com/photo-1589254065878-42c9da997008?auto=format&fit=crop&q=80&w=1200",
+  "variants": [
+    "Underrated but clutch",
+    "Carbon-arm with silent belts",
+    "Driver favorite during scrims",
+    "Built to take match abuse"
+  ],
+  "stack": [
+    { "title": "Drive", "body": "6-wheel drop center West Coast with blue nitrile and brushless drive." },
+    { "title": "Scoring Arm", "body": "Two-stage carbon tube cascade with low-drag cable runs and thrust bearings." },
+    { "title": "Vision", "body": "Jetson co-processor running AprilTags into Photon for fast pose solves." },
+    { "title": "Controls", "body": "Driver profiles, current limiting, and accel curves for repeatable arcs." }
+  ],
+  "theme": {
+    "hue": "92deg",
+    "primary": "#9ef49d",
+    "accent": "#c4ff9c",
+    "magenta": "#98fb98",
+    "components": {
+      "bg": "rgba(10, 20, 12, 0.58)",
+      "border": "rgba(158, 244, 157, 0.22)",
+      "shadow": "0 12px 26px rgba(0,0,0,0.34)",
+      "solid": false
+    }
+  },
+  "glitch": {
+    "enabled": true,
+    "primary": "#c4ff9c",
+    "secondary": "#98fb98"
+  },
+  "features": {
+    "badges": true,
+    "stats": true,
+    "stack": true,
+    "telemetry": true,
+    "checklist": true,
+    "timeline": true,
+    "plays": true,
+    "gallery": true
+  },
+  "stats": [
+    { "label": "Drive", "value": "West Coast 6WD" },
+    { "label": "Weight", "value": "47 lbs" },
+    { "label": "Player", "value": "1 driver + 1 operator" },
+    { "label": "Auto", "value": "Mid sample + park" },
+    { "label": "Endgame", "value": "7s climb" },
+    { "label": "Battery", "value": "5200 mAh Li-ion" }
+  ],
+  "badges": [
+    "Brushless everything",
+    "Alloy bellypan",
+    "Field-centric",
+    "Onboard logging",
+    "Vibration tuned",
+    "Carbon arm",
+    "Hot-swap rollers",
+    "Match reset <60s"
+  ],
+  "timeline": [
+    { "year": "Aug", "title": "Kickoff sketch", "detail": "Paper napkin layout wins the vote." },
+    { "year": "Sep", "title": "Drive V1", "detail": "First chassis rolls; chain rub fixed with spacers." },
+    { "year": "Oct", "title": "Arm sprint", "detail": "Thrust stack removes backlash; arm smooth." },
+    { "year": "Nov", "title": "Comp 1", "detail": "Ranked 3rd; mid-cycle auto hits every run." },
+    { "year": "Dec", "title": "Overhaul", "detail": "Carbon cross brace drops 1.2 lbs, gains stiffness." },
+    { "year": "Jan", "title": "League", "detail": "Perfect hang streak, zero brownouts." }
+  ],
+  "checklist": [
+    { "item": "Tension chains + belts", "status": "ready" },
+    { "item": "Zero arm encoder", "status": "ready" },
+    { "item": "Swap battery & log ID", "status": "ready" },
+    { "item": "Clean camera lens", "status": "todo" },
+    { "item": "Reseed intake rollers", "status": "ready" },
+    { "item": "Upload last log", "status": "todo" }
+  ],
+  "telemetry": [
+    { "label": "Cycle time", "value": "7.4 s", "fill": 82 },
+    { "label": "Auto reliability", "value": "92%", "fill": 92 },
+    { "label": "Hang window", "value": "6.8 s", "fill": 78 },
+    { "label": "Drive uptime", "value": "98%", "fill": 98 },
+    { "label": "Battery health", "value": "88%", "fill": 88 }
+  ],
+  "plays": [
+    { "title": "Auto: Center Spike", "time": "15s", "detail": "Tag align, pickup preload, score mid, park." },
+    { "title": "Auto: Wing Sweep", "time": "15s", "detail": "Slide right, sweep 2 samples, drop to L2." },
+    { "title": "TeleOp: Feed & Fade", "time": "Driver", "detail": "Intake near HP, drift to center drop zones." },
+    { "title": "Endgame: Snap Hang", "time": "<7s", "detail": "Latch, extend, current-limited winch to bar." },
+    { "title": "Debug: Safe Mode", "time": "Utility", "detail": "Caps velocity at 60% for rough fields." }
+  ],
+  "gallery": [
+    { "src": "https://images.unsplash.com/photo-1581091215367-59ab6b86b7aa?auto=format&fit=crop&q=80&w=1200", "alt": "Drive base teardown" },
+    { "src": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=1200", "alt": "Carbon arm close-up" },
+    { "src": "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&q=80&w=1200", "alt": "Pit lighting test" },
+    { "src": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200", "alt": "Control wiring tidy" }
+  ],
+  "notes": "Bring spare thrust bearings and wipe lenses between matches.",
+  "background": {
+    "colors": {
+      "tone1": "#9ef49d",
+      "tone2": "#c4ff9c",
+      "tone3": "#98fb98",
+      "base": "#041204"
+    }
+  }
+}

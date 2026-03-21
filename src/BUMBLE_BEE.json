@@ -1,5 +1,101 @@
 {
-    "name":"BUMBLE BEE",
-    "description":"Could achive level 2 accent campable of getting points through samples and specimins had a three specimin auto",
-    "image":"https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800"
+  "name": "BUMBLE BEE",
+  "heroTitle": "Bumble Bee",
+  "description": "placeholder",
+  "image": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1200",
+  "variants": [
+    "placeholder",
+    "placeholder",
+    "placeholder",
+    "placeholder"
+  ],
+  "stack": [
+    { "title": "placeholder", "body": "placeholder" },
+    { "title": "placeholder", "body": "placeholder" },
+    { "title": "placeholder", "body": "placeholder" },
+    { "title": "placeholder", "body": "placeholder" }
+  ],
+  "theme": {
+    "hue": "52deg",
+    "primary": "#fef08a",
+    "accent": "#fbbf24",
+    "magenta": "#f59e0b",
+    "components": {
+      "bg": "rgba(22, 17, 5, 0.62)",
+      "border": "rgba(255, 215, 115, 0.2)",
+      "shadow": "0 12px 28px rgba(0,0,0,0.36)",
+      "solid": false
+    }
+  },
+  "glitch": {
+    "enabled": true,
+    "primary": "#fbbf24",
+    "secondary": "#fef08a"
+  },
+  "features": {
+    "badges": true,
+    "stats": true,
+    "stack": true,
+    "telemetry": true,
+    "checklist": true,
+    "timeline": true,
+    "plays": true,
+    "gallery": true
+  },
+  "stats": [
+    { "label": "placeholder", "value": "placeholder" },
+    { "label": "placeholder", "value": "placeholder" },
+    { "label": "placeholder", "value": "placeholder" },
+    { "label": "placeholder", "value": "placeholder" },
+    { "label": "placeholder", "value": "placeholder" },
+    { "label": "placeholder", "value": "placeholder" }
+  ],
+  "badges": [
+    "placeholder"
+
+  ],
+  "timeline": [
+    { "year": "placeholder", "title": "placeholder", "detail": "placeholder" },
+    { "year": "placeholder", "title": "placeholder", "detail": "placeholder" },
+    { "year": "placeholder", "title": "placeholder", "detail": "placeholder" },
+    { "year": "placeholder", "title": "placeholder", "detail": "placeholder" },
+    { "year": "placeholder", "title": "placeholder", "detail": "placeholder" },
+    { "year": "placeholder", "title": "placeholder", "detail": "placeholder" }
+  ],
+  "checklist": [
+    { "item": "placeholder", "status": "ready" },
+    { "item": "placeholder", "status": "ready" },
+    { "item": "placeholder", "status": "ready" },
+    { "item": "placeholder", "status": "ready" },
+    { "item": "placeholder", "status": "todo" },
+    { "item": "placeholder", "status": "todo" }
+  ],
+  "telemetry": [
+    { "label": "placeholder", "value": "6.2 s", "fill": 90 },
+    { "label": "placeholder", "value": "88%", "fill": 88 },
+    { "label": "placeholder", "value": "4%", "fill": 4 },
+    { "label": "placeholder", "value": "93%", "fill": 93 },
+    { "label": "placeholder", "value": "89%", "fill": 89 }
+  ],
+  "plays": [
+    { "title": "placeholder", "time": "15s", "detail": "placeholder" },
+    { "title": "placeholder", "time": "15s", "detail": "placeholder" },
+    { "title": "placeholder", "time": "15s", "detail": "placeholder" },
+    { "title": "placeholder", "time": "15s", "detail": "placeholder" }
+  ],
+  "gallery": [
+    { "src": "https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&q=80&w=1200", "alt": "placeholder" },
+    { "src": "https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&q=80&w=1200", "alt": "placeholder" },
+    { "src": "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&q=80&w=1200", "alt": "placeholder" },
+    { "src": "https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&q=80&w=1200", "alt": "placeholder" }
+  ],
+  "notes": "______ placeholder ______",
+  "background": {
+    "colors": {
+      "tone1": "#fef08a",
+      "tone2": "#fbbf24",
+      "tone3": "#f59e0b",
+      "base": "#050505"
+    }
+  }
 }
