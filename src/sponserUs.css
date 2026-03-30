@@ -60,11 +60,12 @@ body::before {
     text-align: center;
     width: 100%;
     font-weight: 500;
-    color: var(--neon-cyan);
-    text-shadow: 2px 2px 0px var(--neon-magenta);
-    
+    font-size: 2em;
+    color: white;
+    text-shadow: 2px 2px 2px var(--neon-cyan);
+    font: monospace; /*required for anim*/
+    font-weight: 800;
 }
-
 h1,
 h2 {
     text-transform: uppercase;
