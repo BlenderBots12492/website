@@ -653,3 +653,7 @@ h2 {
         content: "THE BLENDER BOTS";
     }
 }
+
+.bot p {
+    color: #ccc;
+}
