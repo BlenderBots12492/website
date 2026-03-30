@@ -12,11 +12,11 @@
 <body>
 
 <div class="parallax"></div>
-<div class="title"><h1>THE BLENDER BOTS</h1></div>
+<div><h1 class="title"></h1></div>
 
 <div class="content">
     <section class="about">
-        <h1>Who are we</h1>
+        <h1>Who we are:</h1>
         <p>We are the <strong>Blender Bots</strong>, a high school robotics team competing in the FIRST Tech Challenge (FTC). Since 2013, we've been competing and building robots. We are the only STEM opportunity on campus.</p>
     </section>
     <section class="info">
@@ -32,28 +32,28 @@
         <h1>Robots</h1>
         <h2 style="color: var(--neon-yellow); margin-bottom: 2rem;">Legacy of Innovation</h2>
         <p>We have made bots since 2013. Here are some of our recent creations:</p>
-        
+
         <div class="bots">
-            <div class="bot">
+            <div class="bot" onclick="window.location = 'src/bot.html?bot=AIM'">
                 <h3 class="botName glitch" data-text="AIM">AIM</h3>
                 <div class="bot-image-placeholder">
-                    <img src="https://images.unsplash.com/photo-1531746790731-6c087fecd05a?auto=format&fit=crop&q=80&w=800" alt="AIM Robot">
+                    <img src="src/photos/DECODE1.png" alt="AIM Robot">
                 </div>
                 <p style="margin-top: 4px;">DECODE 2025-2026</p>
             </div>
-            
-            <div class="bot">
+
+            <div class="bot" onclick="window.location = 'src/bot.html?bot=BUMBLE_BEE'">
                 <h3 class="botName glitch" data-text="BUMBLE BEE">BUMBLE BEE</h3>
                 <div class="bot-image-placeholder">
-                    <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800" alt="Bumble Bee Robot">
+                    <img src="src/photos/INTO_THE_DEEP1.png" alt="Bumble Bee Robot">
                 </div>
                 <p style="margin-top: 4px;">INTO THE DEEP 2024-2025</p>
             </div>
-            
-            <div class="bot">
-                <h3 class="botName glitch" data-text="THE UNCOOL ONE">THE UNCOOL ONE</h3>
+
+            <div class="bot" onclick="window.location = 'src/bot.html?bot=strugie'">
+                <h3 class="botName glitch" data-text="strugie">STRUGIE</h3>
                 <div class="bot-image-placeholder">
-                    <img src="https://images.unsplash.com/photo-1589254065878-42c9da997008?auto=format&fit=crop&q=80&w=800" alt="The Uncool Robot">
+                    <img src="src/photos/CENTERSTAGE1.png" alt="strugie">
                 </div>
                 <p style="margin-top: 4px;">CENTER STAGE 2023-2024</p>
             </div>
@@ -72,13 +72,20 @@
     <section class="outreachSec">
     <div class="outreach">
     <h3 class="glitch" data-text="OutReach">OutReach</h3>
-    <img alt="outreachImg" src="https://images.unsplash.com/photo-1589254065878-42c9da997008?auto=format&fit=crop&q=80&w=800">
+    <img alt="outreachImg" src="src/photos/outreach1.png">
     <p>This year we managed to do ______________</p>
     </div>
     <div class="GraciousProfessionalism">
     <h3 class="glitch" data-text="Gracious Professionalism">Gracious Professionalism</h3>
-    <img alt="Gracious Professionalism img" src="https://images.unsplash.com/photo-1589254065878-42c9da997008?auto=format&fit=crop&q=80&w=800">
+    <img alt="Gracious Professionalism img" src="src/photos/graciousprofessionalism1.png">
     <p>over the season we have given people replacement parts and even helped with debuging code, among the people we helped are RMS overdrive, Wolfbotics, and ____</p>
+    </div>
+    <div class="STEM">
+    <h3 class="glitch" data-text="STEM">STEM</h3>
+    <img alt="STEM img" src="src/photos/STEM2.png">
+    <p>
+    We are the only STEM opportunity on campus. This means any students that want to do STEM have to be on the Blender Bots team. This causes challanges due to large demand, and limited spots. Which is something we hope to fix this year. We plan on making a JV team however for this we need more sponsers and a larger space
+    </p>
     </div>
     </section>
     <section class="contact">
@@ -86,11 +93,11 @@
         <div class="contactGrid">
             <div class="contactCard">
                 <h3>Email</h3>
-                <a href="mailto:blenderbots@school.edu">blenderbots@school.edu</a>
+                <a href="">blenderbots@school.edu</a>
             </div>
             <div class="contactCard">
                 <h3>YouTube</h3>
-                <a href="https://youtube.com/@BlenderBotsFTC" target="_blank">@BlenderBotsFTC</a>
+                <a href="" target="_blank">@BlenderBotsFTC</a>
             </div>
             <div class="contactCard">
                 <h3>School Address</h3>
@@ -101,6 +108,13 @@
     <div style="text-align: center;" class="sponserUs"><a href="">SPONSER US</a></p>
     <br/>
     <br/>
+    <script src="src/scripts.js"></script>
+    <script>
+      const isMobile = navigator.userAgentData?.mobile || /Mobi|Android|iPhone|iPad|iPod/.test(navigator.userAgent);
+      if (isMobile) {
+        document.querySelector(".parallax").style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('src/photos/team-photo-mobile.png')";
+      }
+    </script>
 </div>
 
 </body>

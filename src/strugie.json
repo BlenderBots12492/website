@@ -1,0 +1,131 @@
+{
+  "name": "STRUGIE",
+  "heroTitle": "strugie",
+  "description": "was our centerstage bot",
+  "image": "photos/CENTERSTAGE1.png",
+  "variants": ["PLACEHOLDER", "PLACEHOLDER", "PLACEHOLDER", "PLACEHOLDER"],
+  "stack": [
+    { "title": "Drive", "body": "Macanum Drive" },
+    {
+      "title": "Scoring Arm",
+      "body": "two sets of slides installed at a 45&#176; angle"
+    },
+    { "title": "Vision", "body": "started to screw around with simple CNN's" }
+  ],
+  "theme": {
+    "hue": "92deg",
+    "primary": "#9ef49d",
+    "accent": "#c4ff9c",
+    "magenta": "#98fb98",
+    "components": {
+      "bg": "rgba(10, 20, 12, 0.58)",
+      "border": "rgba(158, 244, 157, 0.22)",
+      "shadow": "0 12px 26px rgba(0,0,0,0.34)",
+      "solid": false
+    }
+  },
+  "glitch": {
+    "enabled": true,
+    "primary": "#c4ff9c",
+    "secondary": "#98fb98"
+  },
+  "features": {
+    "badges": false,
+    "stats": true,
+    "stack": true,
+    "telemetry": false,
+    "checklist": false,
+    "timeline": true,
+    "plays": false,
+    "gallery": true
+  },
+  "stats": [
+    { "label": "Drive", "value": "Macanum Drive" },
+    { "label": "Drive Team", "value": "2 drivers + 1 coach + 1 human player" },
+    { "label": "Auto", "value": "15.8 points" },
+    { "label": "Awards", "value": "Won second for control award" },
+    { "label": "Scoring", "value": "about 63 points solo" },
+    { "label": "Endgame", "value": "Launched paper airplane, and hung" }
+  ],
+  "badges": ["PLACEHOLDER", "PLACEHOLDER", "PLACEHOLDER"],
+  "timeline": [
+    {
+      "year": "Sept 9  ",
+      "title": "Kickoff",
+      "detail": "started to prototype"
+    },
+    {
+      "year": "Oct 28  ",
+      "title": "Screamage",
+      "detail": "had a fully functional robot, the screamage told us what to change for future competitions"
+    },
+    {
+      "year": "Nov 12  ",
+      "title": "Meet #1",
+      "detail": "we performed well"
+    },
+    {
+      "year": "Dec 9  ",
+      "title": "Meet #2",
+      "detail": "we performed slightly better"
+    },
+    {
+      "year": "Jan 13  ",
+      "title": "Meet #3",
+      "detail": "we performed even better"
+    },
+    {
+      "year": "Feb 10  ",
+      "title": "League Event",
+      "detail": "Did not make it to playoffs but performed ok in the end, we learned a lot"
+    }
+  ],
+  "checklist": [
+    { "item": "PLACEHOLDER", "status": "ready" },
+    { "item": "PLACEHOLDER", "status": "ready" },
+    { "item": "PLACEHOLDER", "status": "ready" },
+    { "item": "PLACEHOLDER", "status": "todo" },
+    { "item": "PLACEHOLDER", "status": "ready" },
+    { "item": "PLACEHOLDER", "status": "todo" }
+  ],
+  "telemetry": [
+    { "label": "PLACEHOLDER", "value": "PLACEHOLDER", "fill": 80 },
+    { "label": "PLACEHOLDER", "value": "PLACEHOLDER", "fill": 80 },
+    { "label": "PLACEHOLDER", "value": "PLACEHOLDER", "fill": 80 },
+    { "label": "PLACEHOLDER", "value": "PLACEHOLDER", "fill": 80 },
+    { "label": "PLACEHOLDER", "value": "PLACEHOLDER", "fill": 80 }
+  ],
+  "plays": [
+    { "title": "PLACEHOLDER", "time": "15s", "detail": "PLACEHOLDER" },
+    { "title": "PLACEHOLDER", "time": "15s", "detail": "PLACEHOLDER" },
+    { "title": "PLACEHOLDER", "time": "15s", "detail": "PLACEHOLDER" },
+    { "title": "PLACEHOLDER", "time": "15s", "detail": "PLACEHOLDER" }
+  ],
+  "gallery": [
+    {
+      "src": "photos/CENTERSTAGE1.png",
+      "alt": "Strugie"
+    },
+    {
+      "src": "photos/CENTERSTAGE2.png",
+      "alt": "Strugie"
+    },
+    {
+      "src": "photos/CENTERSTAGE3.png",
+      "alt": "Strugie"
+    },
+    {
+      "src": "photos/CENTERSTAGE4.png",
+      "alt": "Strugie"
+    }
+  ],
+  "notes": "Our best robot yet, only beaten by the robots in the following years",
+  "background": {
+    "colors": {
+      "tone1": "#9ef49d",
+      "tone2": "#c4ff9c",
+      "tone3": "#98fb98",
+      "base": "#041204"
+    }
+  }
+}

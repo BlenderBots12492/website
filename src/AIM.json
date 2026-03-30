@@ -1,0 +1,145 @@
+{
+  "name": "AIM",
+  "heroTitle": "AIM",
+  "description": "had an auto aim feature using linear regresion and April tags, was intresting because most sucsessful robots that year had a hooded launcher not a parellel launcher",
+  "image": "photos/DECODE1.png",
+  "variants": [],
+  "stack": [
+    {
+      "title": "Vision",
+      "body": "Did not use limelight instead used a webcam and onboard computations"
+    },
+    {
+      "title": "Pathing",
+      "body": "used pedropathing and GoBuilda pinpoint module"
+    },
+    {
+      "title": "Intake",
+      "body": "A boot wheel based intake, same motor powered the feeder mechanism"
+    },
+    {
+      "title": "Launcher",
+      "body": "Used parellel launcher which is two wheels rotating oposite of each other that the ball is pushed through"
+    }
+  ],
+  "theme": {
+    "hue": "76deg",
+    "primary": "#ff8200",
+    "accent": "#ff6200",
+    "magenta": "#736e45",
+    "components": {
+      "bg": "rgba(115, 110, 69, 0.6)",
+      "border": "rgba(115, 110, 69, 0.16)",
+      "shadow": "0 12px 28px rgba(0,0,0,0.36)",
+      "solid": false
+    }
+  },
+  "glitch": {
+    "enabled": true,
+    "primary": "#ff8200",
+    "secondary": "#ff8200"
+  },
+  "features": {
+    "badges": false,
+    "stats": true,
+    "stack": true,
+    "telemetry": false,
+    "checklist": false,
+    "timeline": true,
+    "plays": true,
+    "gallery": true
+  },
+  "stats": [
+    { "label": "Drive", "value": "Macanum Drive " },
+    { "label": "Weight", "value": "~30 lbs" },
+    {
+      "label": "Drive Team",
+      "value": "2 drivers + 1 coach + (optional) 1 human player"
+    },
+    { "label": "Auto", "value": "12 balls close, 3 balls far" },
+    { "label": "Camera", "value": "Logitech webcam" },
+    { "label": "Scoring", "value": "about 100 points solo" },
+    { "label": "Endgame", "value": "parks" }
+  ],
+  "badges": [
+    "huh",
+    "yes",
+    "poo a cools",
+    "things i guess",
+    "YES - but cooler",
+    "Swap battery <30s or explode",
+    "field eater",
+    "Fast hang"
+  ],
+  "timeline": [
+    {
+      "year": "Sept 6  ",
+      "title": "Kickoff",
+      "detail": "We immediatly started to brainstorm"
+    },
+    {
+      "year": "Oct 26  ",
+      "title": "The Screamage",
+      "detail": "we had the robot that would become our final version"
+    },
+    {
+      "year": "Nov 1  ",
+      "title": "South Bay Meet #1",
+      "detail": "Wheel belt broke before first match had to borrow a belt from a diffrent team"
+    },
+    {
+      "year": "Dec 12  ",
+      "title": "South Bay Meet #2",
+      "detail": "No change to placment"
+    },
+    {
+      "year": "Jan 17  ",
+      "title": "South Bay Meet #3",
+      "detail": "Increased placment up by one spot"
+    },
+    {
+      "year": "Feb 7  ",
+      "title": "South Bay League Tornament",
+      "detail": "at the end of quals we were third and at the end of tornament we were still third"
+    }
+  ],
+  "checklist": [
+    { "item": "non-active feature", "status": "non-active feature" }
+  ],
+  "telemetry": [
+    { "label": "Auto reliability", "value": "80%", "fill": 80 },
+    {
+      "label": "Cool feature want to use it just don't know what for",
+      "value": "disabled feature",
+      "fill": 0
+    }
+  ],
+
+  "gallery": [
+    {
+      "src": "photos/DECODE1.png",
+      "alt": "AIM"
+    },
+    {
+      "src": "photos/DECODE2.png",
+      "alt": "AIM"
+    },
+    {
+      "src": "photos/DECODE3.png",
+      "alt": "AIM"
+    },
+    {
+      "src": "photos/DECODE4.png",
+      "alt": "AIM"
+    }
+  ],
+  "notes": "This robot gave us our best year yet",
+  "background": {
+    "colors": {
+      "tone1": "#543418",
+      "tone2": "#78471d",
+      "tone3": "#0c4d61",
+      "base": "#0c4d61"
+    }
+  }
+}
