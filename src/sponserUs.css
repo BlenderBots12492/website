@@ -60,12 +60,17 @@ body::before {
     text-align: center;
     width: 100%;
     font-weight: 500;
+}
+
+.title::before {
     font-size: 2em;
     color: white;
     text-shadow: 2px 2px 2px var(--neon-cyan);
-    font: monospace; /*required for anim*/
+    font-family: monospace;
     font-weight: 800;
+    content: "SPONSER US";
 }
+
 h1,
 h2 {
     text-transform: uppercase;
@@ -94,19 +99,21 @@ strong {
     top: 20px;
     left: 20px;
     color: var(--neon-cyan);
-    text-shadow: 1px 1px 0px var(--neon-magenta);
+    text-decoration: none;
+    text-transform: uppercase;
     cursor: pointer;
     display: flex;
     align-items: center;
     font-weight: 500;
+    transition: transform 0.1s ease; 
 }
 .back:hover svg, .back:hover, span {
     transform: translateX(-4px);
     transition: transform 0.2s ease;
 }
 .back svg {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     margin-right: 8px;
     fill: var(--neon-cyan);
 }
