@@ -1,9 +1,9 @@
 :root {
     --neon-pink: #f8f005;
-    --neon-cyan: #00ffff;
+    --neon-cyan: #9c8400;
     --neon-yellow: #f8f005;
     --bg-black: #0a0a0a;
-    --neon-magenta: #ff00ff;
+    --neon-magenta: #ccc;
 }
 
 body {
@@ -78,8 +78,8 @@ h1 {
     font-size: 3.5rem;
     font-weight: 800;
     margin-bottom: 2rem;
-    color: var(--neon-cyan);
-    text-shadow: 2px 2px 0px var(--neon-magenta);
+    color: var(--neon-magenta);
+    text-shadow: 2px 2px 0px var(--neon-cyan);
 }
 
 .about p {
@@ -403,10 +403,10 @@ h1 {
 }
 
 .sponsor:hover {
-    border-color: var(--neon-cyan);
+    border-color: yellow;
     box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
     transform: scale(1.05);
-    color: var(--neon-cyan);
+    color: yellow;
 }
 
 /* Contact Section */
@@ -436,7 +436,6 @@ h1 {
 }
 
 .contactCard h2 {
-    color: var(--neon-pink);
     margin-bottom: 15px;
     font-size: 1.2rem;
     text-transform: uppercase;
@@ -467,8 +466,8 @@ h1 {
 .info h1 {
     font-size: 2rem;
     font-weight: 500;
-    color: var(--neon-cyan);
-    text-shadow: 2px 2px 0px var(--neon-magenta);
+    color: var(--neon-magenta);
+    text-shadow: 1px 1px 0px var(--neon-cyan);
 }
 
 .scouts {
@@ -547,7 +546,7 @@ h1 {
     height: 2px;
     top: 20px;
     left: 0;
-    background-color: var(--neon-cyan);
+    background-color: yellow;
     transform: scaleX(0);
     transition: transform 0.3s ease;
 }

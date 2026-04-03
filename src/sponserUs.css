@@ -1,9 +1,9 @@
 :root {
     --neon-pink: #f8f005;
-    --neon-cyan: #00ffff;
+    --neon-cyan: #9c8400;
     --neon-yellow: #f8f005;
     --bg-black: #0a0a0a;
-    --neon-magenta: #ff00ff;
+    --neon-magenta: #ccc;
 }
 
 body {
@@ -79,8 +79,8 @@ h2 {
 
 h2 {
     margin: 40px 20px 10px;
-    color: var(--neon-cyan);
-    text-shadow: 2px 2px 0px var(--neon-magenta);
+    color: var(--neon-magenta);
+    text-shadow: 2px 2px 0px var(--neon-cyan);
 }
 
 p {
@@ -91,14 +91,14 @@ p {
 }
 
 strong {
-    color: var(--neon-cyan);
+    color: white;
 }
 
 .back {
     position: absolute;
     top: 20px;
     left: 20px;
-    color: var(--neon-cyan);
+    color: white;
     text-decoration: none;
     text-transform: uppercase;
     cursor: pointer;
@@ -115,11 +115,12 @@ strong {
     width: 18px;
     height: 18px;
     margin-right: 8px;
-    fill: var(--neon-cyan);
+    fill: white;
 }
 a {
-    color: var(--neon-cyan);
-    font-weight: 500;
+    color: white;
+
+    font-weight: 700;
     text-decoration: none;
     transition: color 0.2s ease;
 }
