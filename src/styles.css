@@ -43,7 +43,7 @@ body::before {
     background-color: #111; /* Fallback color */
     background-image:
         linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url("/src/photos/team-photo.png");
+        url("/src/photos/team-photo.webp");
         /*high res, low res*/
     min-height: 80vh;
     background-attachment: fixed;
