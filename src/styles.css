@@ -73,8 +73,8 @@ h1 {
     letter-spacing: 2px;
 }
 
-.about h1,
-.ourRobots h1 {
+.about h2,
+.ourRobots > h2 {
     font-size: 3.5rem;
     font-weight: 800;
     margin-bottom: 2rem;
@@ -130,12 +130,6 @@ h1 {
 
 .bot:hover::before {
     transform: scaleX(1);
-}
-
-.botName {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    color: white;
 }
 
 .bot .bot-image-placeholder {
@@ -365,6 +359,11 @@ h1 {
     padding: 80px 0;
     text-align: center;
 }
+.sponsors h2 {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 2em;
+}
 
 .sponsorsGrid {
     display: grid;
@@ -414,6 +413,11 @@ h1 {
     padding: 80px 0;
     text-align: center;
 }
+.contact h2 {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 2em;
+}
 
 .contactGrid {
     display: grid;
@@ -435,7 +439,7 @@ h1 {
     transform: translateX(10px);
 }
 
-.contactCard h2 {
+.contactCard h3 {
     margin-bottom: 15px;
     font-size: 1.2rem;
     text-transform: uppercase;
@@ -506,7 +510,7 @@ h1 {
 }
 .outreachSec h2 {
     color: white;
-    text-shadow: 2px 2px 4px #8B6508;
+    text-shadow: 2px 2px 4px #8b6508;
     font-size: 1.8em;
     margin-top: 0;
     margin-bottom: 10px;
@@ -572,7 +576,7 @@ h1 {
     margin-left: 20px;
     text-align: left;
     justify-self: left;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-size: 1.2em;
     text-transform: uppercase;
 }
@@ -714,4 +718,8 @@ h1 {
 
 .bot p {
     color: #ccc;
+}
+.botName {
+    color: white;
+    font-size: 2em;
 }
