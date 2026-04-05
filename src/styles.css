@@ -556,7 +556,7 @@ h1 {
     margin-left: 20px;
     text-align: left;
     justify-self: left;
-    font-family: arial;
+    font-family: 'Inter', sans-serif;
     font-size: 1.2em;
     text-transform: uppercase;
 }
