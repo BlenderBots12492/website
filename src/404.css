@@ -1,0 +1,28 @@
+body {
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-family: arial;
+    height: 100vh;
+    margin: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+h1 {
+    width: 100%;
+    font-size: 5em;
+    font-family: monospace;
+}
+p {
+    width: 100%;
+    font-size: 18px;
+}
+a {
+    color: white;
+    text-decoration: none;
+    transition: 0.2s;
+}
+a:hover {
+    color: yellow;
+}

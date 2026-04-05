@@ -1,0 +1,71 @@
+/* Footer base */
+footer {
+    padding: 40px 20px;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 80px;
+    color: #666;
+    font-size: 0.9rem;
+    background: var(--bg-black);
+    position: relative;
+    z-index: 1;
+}
+
+/* Remove default ul styling and layout links horizontally */
+footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+/* Style footer links */
+footer a {
+    color: #666;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.85rem;
+    transition: color 0.2s ease;
+}
+
+footer a:hover {
+    color: var(--neon-yellow);
+}
+
+/* Social icons spacing */
+footer li:last-child {
+    display: flex;
+    gap: 12px;
+}
+
+footer li:last-child a {
+    display: flex;
+    align-items: center;
+}
+
+footer li:last-child a svg {
+    fill: #666;
+    transition: fill 0.2s ease;
+}
+
+footer li:last-child a:hover svg {
+    fill: var(--neon-yellow);
+}
+
+/* Footer logo */
+footer img {
+    max-width: 150px;
+    height: auto;
+    margin-top: 24px;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+footer img:hover {
+    opacity: 1;
+}
