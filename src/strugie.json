@@ -5,7 +5,7 @@
   "image": "photos/CENTERSTAGE1.png",
   "variants": ["PLACEHOLDER", "PLACEHOLDER", "PLACEHOLDER", "PLACEHOLDER"],
   "stack": [
-    { "title": "Drive", "body": "Macanum Drive" },
+    { "title": "Drive", "body": "Mecanum Drive" },
     {
       "title": "Scoring Arm",
       "body": "two sets of slides installed at a 45&#176; angle"
@@ -40,7 +40,7 @@
     "gallery": true
   },
   "stats": [
-    { "label": "Drive", "value": "Macanum Drive" },
+    { "label": "Drive", "value": "Mecanum Drive" },
     { "label": "Drive Team", "value": "2 drivers + 1 coach + 1 human player" },
     { "label": "Auto", "value": "15.8 points" },
     { "label": "Awards", "value": "Won second for control award" },

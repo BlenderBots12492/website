@@ -5,7 +5,7 @@
   "image": "photos/INTO_THE_DEEP1.png",
   "variants": ["Claw based Intake", "Level 2 hang"],
   "stack": [
-    { "title": "Drive", "body": "Macanum Drive" },
+    { "title": "Drive", "body": "Mecanum Drive" },
     { "title": "Intake", "body": "A claw with three axis of freedom" },
     { "title": "Scoring", "body": "10 samples or X specimens" },
     { "title": "Autonomous", "body": "1 sample or 3 specimens" }
@@ -38,7 +38,7 @@
     "gallery": true
   },
   "stats": [
-    { "label": "Drive", "value": "Macanum Drive" },
+    { "label": "Drive", "value": "Mecanum Drive" },
     {
       "label": "Drive Team",
       "value": "2 drivers + 1 coach + (optional) 1 human player"
@@ -74,8 +74,8 @@
     },
     {
       "year": "May 17  ",
-      "title": "Self-hosted scrimage",
-      "detail": "We hosted a scrimage with a few teams that did not move on from Leagues"
+      "title": "Self-hosted scrimmage",
+      "detail": "We hosted a scrimmage with a few teams that did not move on from Leagues"
     }
   ],
   "checklist": [

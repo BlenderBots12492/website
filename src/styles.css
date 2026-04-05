@@ -586,7 +586,7 @@ h1 {
     font-size: 2em;
     color: white;
     text-shadow: 2px 2px 2px var(--neon-cyan);
-    font: monospace; /*required for anim*/
+    font-family: monospace; /*required for anim*/
     font-weight: 800;
     font-size: 2em;
     content: "";
