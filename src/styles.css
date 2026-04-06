@@ -328,7 +328,9 @@ h1 {
     border-radius: 4px;
     padding: 30px;
     text-align: center;
-    transition: all 0.3s ease;
+    transition:
+        all 0.3s ease,
+        opacity 0.5s;
     position: relative;
     overflow: hidden;
     cursor: pointer;
@@ -343,7 +345,9 @@ h1 {
     height: 2px;
     background: var(--neon-yellow);
     transform: scaleX(0);
-    transition: transform 0.3s ease;
+    transition:
+        transform 0.3s ease,
+        opacity 0.5s;
 }
 
 .bot-card:hover {
@@ -426,7 +430,9 @@ h1 {
     font-weight: 600;
     letter-spacing: 1px;
     text-transform: uppercase;
-    transition: all 0.3s ease;
+    transition:
+        all 0.3s ease,
+        opacity 0.5s;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -526,7 +532,9 @@ h1 {
     border-left: 4px solid var(--neon-yellow);
     padding: 30px;
     text-align: left;
-    transition: all 0.3s ease;
+    transition:
+        all 0.3s ease,
+        opacity 0.5s;
 }
 
 .contact-card:hover {
@@ -546,7 +554,9 @@ h1 {
     color: var(--light-gray);
     text-decoration: none;
     font-size: 1.1rem;
-    transition: color 0.2s ease;
+    transition:
+        color 0.2s ease,
+        opacity 0.5s;
 }
 
 .contact-card a:hover {
@@ -557,7 +567,9 @@ h1 {
    =============================== */
 .fade-ready {
     opacity: 0;
-    transition: opacity 0.5s ease;
+}
+.opacity-transition {
+    transition: opacity 0.5s;
 }
 .fade-visible {
     opacity: 1;

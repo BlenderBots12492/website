@@ -73,7 +73,7 @@
             </div>
         </nav>
         <div class="content">
-            <section class="about">
+            <section class="about opacity-transition">
                 <h2>Who are we</h2>
                 <p>
                     We are the <strong>Blender Bots</strong>, a high school
@@ -82,7 +82,7 @@
                     the only STEM opportunity on campus.
                 </p>
             </section>
-            <section class="info">
+            <section class="info opacity-transition">
                 <h2><span>DECODE</span> World ranking <span>90</span>%</h2>
 
                 <a class="scouts-link" href="https://ftcscout.org/teams/12492"
@@ -92,7 +92,7 @@
             </section>
 
             <section class="robots">
-                <div class="robots-title">
+                <div class="robots-title opacity-transition">
                     <h2>Robots</h2>
                     <p>
                         We have been making bots since 2016. Here are some of
@@ -182,7 +182,7 @@
                 </div>
             </section>
             <section class="sponsors">
-                <h2>Sponsors</h2>
+                <h2 class="opacity-transition">Sponsors</h2>
                 <div class="sponsors-grid">
                     <a
                         class="sponsor-link"
@@ -217,7 +217,7 @@
                 </div>
             </section>
             <section class="outreach-section">
-                <div class="outreach-item">
+                <div class="outreach-item opacity-transition">
                     <img
                         alt="outreachImg"
                         src="src/photos/outreach1.png"
@@ -233,7 +233,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="outreach-item">
+                <div class="outreach-item opacity-transition">
                     <img
                         alt="Gracious Professionalism img"
                         src="src/photos/graciousprofessionalism1.png"
@@ -252,7 +252,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="outreach-item">
+                <div class="outreach-item opacity-transition">
                     <img
                         alt="STEM img"
                         src="src/photos/STEM2.png"
@@ -274,7 +274,7 @@
                 </div>
             </section>
             <section class="contact">
-                <h2>Contact Us</h2>
+                <h2 class="opacity-transition">Contact Us</h2>
                 <div class="contact-grid">
                     <div class="contact-card">
                         <h3>Email</h3>
@@ -345,6 +345,8 @@
                     ><img
                         alt="The Blender Bots"
                         src="src/photos/logo/Banner.png"
+                        loading="lazy"
+                        decoding="async"
                 /></a>
             </div>
         </footer>
@@ -387,6 +389,7 @@
             fadeIn.add(document.querySelector(".contact > h2"));
             fadeIn.add(document.querySelector(".info"));
             fadeIn.add(document.querySelector(".robots-title"));
+            fadeIn.add(document.querySelector(".sponsors > h2"));
         </script>
     </body>
 </html>
