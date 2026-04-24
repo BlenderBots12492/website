@@ -2,11 +2,10 @@
    CSS CUSTOM PROPERTIES
    ======================================== */
 :root {
-    --neon-pink: #f8f005;
-    --neon-cyan: #9c8400;
+    --dark-gold: #9c8400;
     --neon-yellow: #f8f005;
     --bg-black: #0a0a0a;
-    --neon-magenta: #ccc;
+    --light-gray: #ccc;
 }
 
 /* ========================================
@@ -59,8 +58,8 @@ body::before {
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-    border-bottom: 4px solid var(--neon-pink);
-    box-shadow: 0 0 20px var(--neon-pink);
+    border-bottom: 4px solid var(--neon-yellow);
+    box-shadow: 0 0 20px var(--neon-yellow);
 }
 
 .title {
@@ -73,7 +72,7 @@ body::before {
 
 .title::before {
     color: white;
-    text-shadow: 2px 2px 2px var(--neon-cyan);
+    text-shadow: 2px 2px 2px var(--dark-gold);
     font-family: Inter;
     font-weight: 800;
     font-size: 2em;
@@ -83,39 +82,105 @@ body::before {
 }
 
 @keyframes load-anim {
-    0% { content: "3"; }
-    3% { content: "(^"; }
-    6% { content: "^#!"; }
-    9% { content: "#^9$"; }
-    12% { content: "$0*)5"; }
-    16% { content: "7@1$1("; }
-    19% { content: "8#39)*!"; }
-    22% { content: "!8@7!1#)"; }
-    25% { content: "!^!*)7!#$"; }
-    28% { content: "&$(^^(*%)$"; }
-    31% { content: ")91*#!#6@*8"; }
-    34% { content: "^&7@8@(#^^69"; }
-    38% { content: "3*$(96%&!#&^6"; }
-    41% { content: "#^&!^23$4&7#&%"; }
-    44% { content: "*^)%(!4956$##10"; }
-    47% { content: "^$^^&*1)12$^0*8("; }
-    50% { content: "T$^^&*1)12$^0*8("; }
-    53% { content: "TH^^&*1)12$^0*8("; }
-    56% { content: "THE^&*1)12$^0*8("; }
-    59% { content: "THE &*1)12$^0*8("; }
-    62% { content: "THE B*1)12$^0*8("; }
-    66% { content: "THE BL1)12$^0*8("; }
-    69% { content: "THE BLE)12$^0*8("; }
-    72% { content: "THE BLEN12$^0*8("; }
-    75% { content: "THE BLEND2$^0*8("; }
-    78% { content: "THE BLENDE$^0*8("; }
-    81% { content: "THE BLENDER^0*8("; }
-    84% { content: "THE BLENDER 0*8("; }
-    88% { content: "THE BLENDER B*8("; }
-    91% { content: "THE BLENDER BO8("; }
-    94% { content: "THE BLENDER BOT("; }
-    97% { content: "THE BLENDER BOTS"; }
-    100% { content: "THE BLENDER BOTS"; }
+    0% {
+        content: "3";
+    }
+    3% {
+        content: "(^";
+    }
+    6% {
+        content: "^#!";
+    }
+    9% {
+        content: "#^9$";
+    }
+    12% {
+        content: "$0*)5";
+    }
+    16% {
+        content: "7@1$1(";
+    }
+    19% {
+        content: "8#39)*!";
+    }
+    22% {
+        content: "!8@7!1#)";
+    }
+    25% {
+        content: "!^!*)7!#$";
+    }
+    28% {
+        content: "&$(^^(*%)$";
+    }
+    31% {
+        content: ")91*#!#6@*8";
+    }
+    34% {
+        content: "^&7@8@(#^^69";
+    }
+    38% {
+        content: "3*$(96%&!#&^6";
+    }
+    41% {
+        content: "#^&!^23$4&7#&%";
+    }
+    44% {
+        content: "*^)%(!4956$##10";
+    }
+    47% {
+        content: "^$^^&*1)12$^0*8(";
+    }
+    50% {
+        content: "T$^^&*1)12$^0*8(";
+    }
+    53% {
+        content: "TH^^&*1)12$^0*8(";
+    }
+    56% {
+        content: "THE^&*1)12$^0*8(";
+    }
+    59% {
+        content: "THE &*1)12$^0*8(";
+    }
+    62% {
+        content: "THE B*1)12$^0*8(";
+    }
+    66% {
+        content: "THE BL1)12$^0*8(";
+    }
+    69% {
+        content: "THE BLE)12$^0*8(";
+    }
+    72% {
+        content: "THE BLEN12$^0*8(";
+    }
+    75% {
+        content: "THE BLEND2$^0*8(";
+    }
+    78% {
+        content: "THE BLENDE$^0*8(";
+    }
+    81% {
+        content: "THE BLENDER^0*8(";
+    }
+    84% {
+        content: "THE BLENDER 0*8(";
+    }
+    88% {
+        content: "THE BLENDER B*8(";
+    }
+    91% {
+        content: "THE BLENDER BO8(";
+    }
+    94% {
+        content: "THE BLENDER BOT(";
+    }
+    97% {
+        content: "THE BLENDER BOTS";
+    }
+    100% {
+        content: "THE BLENDER BOTS";
+    }
 }
 
 /* ========================================
@@ -203,18 +268,18 @@ h1 {
 }
 
 .about h2,
-.robots > h2 {
+.robots > div > h2 {
     font-size: 3.5rem;
     font-weight: 800;
     margin-bottom: 2rem;
-    color: var(--neon-magenta);
-    text-shadow: 2px 2px 0px var(--neon-cyan);
+    color: var(--light-gray);
+    text-shadow: 2px 2px 0px var(--dark-gold);
 }
 
 .about p {
     font-size: 1.2rem;
     line-height: 1.6;
-    color: #ccc;
+    color: var(--dark-gray);
     max-width: 800px;
 }
 
@@ -231,8 +296,8 @@ h1 {
 .info h2 {
     font-size: 2rem;
     font-weight: 500;
-    color: var(--neon-magenta);
-    text-shadow: 1px 1px 0px var(--neon-cyan);
+    color: var(--light-gray);
+    text-shadow: 1px 1px 0px var(--dark-gold);
 }
 
 .scouts-link {
@@ -263,7 +328,9 @@ h1 {
     border-radius: 4px;
     padding: 30px;
     text-align: center;
-    transition: all 0.3s ease;
+    transition:
+        all 0.3s ease,
+        opacity 0.5s;
     position: relative;
     overflow: hidden;
     cursor: pointer;
@@ -276,14 +343,16 @@ h1 {
     left: 0;
     width: 100%;
     height: 2px;
-    background: var(--neon-pink);
+    background: var(--neon-yellow);
     transform: scaleX(0);
-    transition: transform 0.3s ease;
+    transition:
+        transform 0.3s ease,
+        opacity 0.5s;
 }
 
 .bot-card:hover {
     background: rgba(255, 255, 255, 0.05);
-    border-color: var(--neon-pink);
+    border-color: var(--neon-yellow);
     box-shadow: 0 0 30px rgba(248, 240, 5, 0.3);
     transform: translateY(-10px);
 }
@@ -309,7 +378,7 @@ h1 {
 }
 
 .bot-card p {
-    color: #ccc;
+    color: white;
 }
 
 .bot-name {
@@ -361,7 +430,9 @@ h1 {
     font-weight: 600;
     letter-spacing: 1px;
     text-transform: uppercase;
-    transition: all 0.3s ease;
+    transition:
+        all 0.3s ease,
+        opacity 0.5s;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -390,7 +461,7 @@ h1 {
     align-items: center;
     gap: 30px;
     padding: 30px 0;
-    border-bottom: 2px solid var(--neon-pink);
+    border-bottom: 2px solid var(--neon-yellow);
 }
 
 .outreach-item:last-of-type {
@@ -458,10 +529,12 @@ h1 {
 
 .contact-card {
     background: rgba(255, 255, 255, 0.03);
-    border-left: 4px solid var(--neon-pink);
+    border-left: 4px solid var(--neon-yellow);
     padding: 30px;
     text-align: left;
-    transition: all 0.3s ease;
+    transition:
+        all 0.3s ease,
+        opacity 0.5s;
 }
 
 .contact-card:hover {
@@ -478,12 +551,26 @@ h1 {
 
 .contact-card a,
 .contact-card p {
-    color: #ccc;
+    color: var(--light-gray);
     text-decoration: none;
     font-size: 1.1rem;
-    transition: color 0.2s ease;
+    transition:
+        color 0.2s ease,
+        opacity 0.5s;
 }
 
 .contact-card a:hover {
     color: white;
+}
+/* ===============================
+   Fade in affect
+   =============================== */
+.fade-ready {
+    opacity: 0;
+}
+.opacity-transition {
+    transition: opacity 0.5s;
+}
+.fade-visible {
+    opacity: 1;
 }

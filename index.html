@@ -10,9 +10,23 @@
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
             rel="stylesheet"
         />
-        <link rel="icon" type="image/png" sizes="32x32" href="src/photos/logo/favicon_io/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="src/photos/logo/favicon_io/favicon-16x16.png" />
-        <link rel="icon" type="image/x-icon" href="src/photos/logo/favicon_io/favicon.ico" />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="src/photos/logo/favicon_io/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="src/photos/logo/favicon_io/favicon-16x16.png"
+        />
+        <link
+            rel="icon"
+            type="image/x-icon"
+            href="src/photos/logo/favicon_io/favicon.ico"
+        />
         <link rel="stylesheet" href="src/styles.css" />
         <link rel="stylesheet" href="src/footer.css" />
         <meta
@@ -51,17 +65,21 @@
                     alt="The Blender Bots"
                     style="height: 25px; width: auto; margin-left: 15px"
                 />
-                <div class="sponsor-bar-inner"><a class="sponsor-bar-link" href="/src/sponserUs.html">SPONSER US</a></div>
+                <div class="sponsor-bar-inner">
+                    <a class="sponsor-bar-link" href="/src/sponserUs.html"
+                        >SPONSER US</a
+                    >
+                </div>
             </div>
         </nav>
         <div class="content">
-            <section class="about">
+            <section class="about opacity-transition">
                 <h2>Who are we</h2>
                 <p>
                     We are the Blender Bots, a high school robotics team competing in the FIRST Tech Challenge (FTC). Since 2016, we've been building robots and competing in FTC competitions. We are a major club that is the only STEM opportunity offered on campus. We strive not just to compete in competition but to teach useful skills and have our team veterans mentor recruits.
                 </p>
             </section>
-            <section class="info">
+            <section class="info opacity-transition">
                 <h2>Rankings</h2>
                 <p>
                     In the latest FTC competition (DECODE), we finished in the 90th percentile. This is all due to the work our team put into designing and ideating our robot (AIM). <a class="scouts-link" href="https://ftcscout.org/teams/12492">Click here to see our world rankings.</a>
@@ -70,12 +88,13 @@
             </section>
 
             <section class="robots">
-                <h2>Robots</h2>
-                <p>
-                    We have been making bots since 2016. Here are some of our
-                    recent creations:
-                </p>
-
+                <div class="robots-title opacity-transition">
+                    <h2>Robots</h2>
+                    <p>
+                        We have been making bots since 2016. Here are some of
+                        our recent creations:
+                    </p>
+                </div>
                 <div class="bot-grid">
                     <a class="bot-card" href="src/bot.html?bot=AIM">
                         <h2 class="bot-name" data-text="AIM">AIM</h2>
@@ -159,7 +178,7 @@
                 </div>
             </section>
             <section class="sponsors">
-                <h2>Sponsors</h2>
+                <h2 class="opacity-transition">Sponsors</h2>
                 <div class="sponsors-grid">
                     <a
                         class="sponsor-link"
@@ -194,7 +213,7 @@
                 </div>
             </section>
             <section class="outreach-section">
-                <div class="outreach-item">
+                <div class="outreach-item opacity-transition">
                     <img
                         alt="outreachImg"
                         src="src/photos/outreach1.png"
@@ -208,7 +227,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="outreach-item">
+                <div class="outreach-item opacity-transition">
                     <img
                         alt="Gracious Professionalism img"
                         src="src/photos/graciousprofessionalism1.png"
@@ -224,7 +243,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="outreach-item">
+                <div class="outreach-item opacity-transition">
                     <img
                         alt="STEM img"
                         src="src/photos/STEM2.png"
@@ -240,7 +259,7 @@
                 </div>
             </section>
             <section class="contact">
-                <h2>Contact Us</h2>
+                <h2 class="opacity-transition">Contact Us</h2>
                 <div class="contact-grid">
                     <div class="contact-card">
                         <h3>Email</h3>
@@ -311,8 +330,51 @@
                     ><img
                         alt="The Blender Bots"
                         src="src/photos/logo/Banner.png"
+                        loading="lazy"
+                        decoding="async"
                 /></a>
             </div>
         </footer>
+        <script>
+            class FadeIn {
+                items = [];
+                constructor() {
+                    window.addEventListener("scroll", () => {
+                        this.items.forEach((item) => {
+                            if (
+                                item.element.getBoundingClientRect().top <
+                                window.innerHeight - 100
+                            ) {
+                                item.element.classList.add("fade-visible");
+                                item.visible = true;
+                            }
+                        });
+                    });
+                }
+                add(element) {
+                    if (!element) return;
+                    element.classList.add("fade-ready");
+                    this.items.push({
+                        element,
+                        visible: false,
+                    });
+                }
+                addMultiple(elements) {
+                    for (const element of elements) {
+                        this.add(element);
+                    }
+                }
+            }
+            const fadeIn = new FadeIn();
+            fadeIn.addMultiple(document.querySelectorAll(".bot-card"));
+            fadeIn.addMultiple(document.querySelectorAll(".outreach-item"));
+            fadeIn.addMultiple(document.querySelectorAll(".contact-card"));
+            fadeIn.addMultiple(document.querySelectorAll(".sponsor-link"));
+            fadeIn.add(document.querySelector(".about"));
+            fadeIn.add(document.querySelector(".contact > h2"));
+            fadeIn.add(document.querySelector(".info"));
+            fadeIn.add(document.querySelector(".robots-title"));
+            fadeIn.add(document.querySelector(".sponsors > h2"));
+        </script>
     </body>
 </html>
