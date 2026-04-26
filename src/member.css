@@ -1,0 +1,35 @@
+#roles {
+    display: inline;
+    position: relative;
+    list-style: none;
+    text-align: center;
+    list-style-position: inside;
+    user-select: none;
+    :hover {
+        color: yellow;
+        cursor: default;
+    }
+    ::before {
+        content: "ROLE: ";
+    }
+}
+#roles li {
+    display: inline;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.content {
+    display: flex;
+    justify-items: center;
+    flex-direction: column;
+}
+h1 {
+    text-align: center;
+    width: 100%;
+}
+p {
+    margin: 10px;
+    text-align: center;
+    width: 30%;
+    align-self: center;
+}

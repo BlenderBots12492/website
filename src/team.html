@@ -214,14 +214,14 @@
                             ? `<div class=\"meta\">${metaParts.join(" | ")}</div>`
                             : "";
                         return `
-                        <div class=\"team-card\">
+                        <a class=\"team-card\" href=\"/src/member.html?member=${encodeURIComponent(m.name)}\" style=\"text-decoration:none; color:inherit;\">
                             <div class=\"avatar\" aria-label=\"${m.name}\" style=\"background:${grad};\">${img}</div>
                             <div class=\"team-body\">
                                 <div class=\"name\">${m.name}</div>
                                 <div class=\"subteam\">${subteamCap}</div>
                                 ${metaText}
                             </div>
-                        </div>
+                        </a>
                     `;
                     })
                     .join("");
@@ -234,17 +234,17 @@
 
             // Load avatars from photos if they exist
             function loadAvatarsFromPhotos() {
-                const cards = document.querySelectorAll('.team-card');
+                const cards = document.querySelectorAll(".team-card");
                 cards.forEach((card) => {
-                    const nameDiv = card.querySelector('.name');
+                    const nameDiv = card.querySelector(".name");
                     if (!nameDiv) return;
                     const name = nameDiv.textContent.trim();
 
-                    const avatarDiv = card.querySelector('.avatar');
+                    const avatarDiv = card.querySelector(".avatar");
                     if (!avatarDiv) return;
 
                     // Try different extensions
-                    const extensions = ['png', 'jpg', 'jpeg'];
+                    const extensions = ["png", "jpg", "jpeg"];
                     tryLoadImage(name, extensions, 0, avatarDiv);
                 });
             }
@@ -257,12 +257,12 @@
                 const ext = extensions[index];
                 const imgPath = `/src/photos/team/${name}.${ext}`;
                 const img = new Image();
-                img.onload = function() {
+                img.onload = function () {
                     // Image exists, use it as background
                     avatarDiv.style.background = `url('${imgPath}') center/cover no-repeat`;
-                    avatarDiv.textContent = ''; // Remove initials text
+                    avatarDiv.textContent = ""; // Remove initials text
                 };
-                img.onerror = function() {
+                img.onerror = function () {
                     // Try next extension
                     tryLoadImage(name, extensions, index + 1, avatarDiv);
                 };

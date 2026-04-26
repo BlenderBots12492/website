@@ -37,7 +37,8 @@ html {
         display: none;
     }
 }
-.sponsor-bar > img {
+.sponsor-bar > a > img.nav-logo,
+.sponsor-bar > img.nav-logo {
     height: var(--nav-logo-height) !important;
     width: auto;
 }
