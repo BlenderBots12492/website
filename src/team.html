@@ -156,19 +156,9 @@
                     .join("")
                     .toUpperCase();
             }
+            // Unified team gradient (gold/yellow emphasis; ignore subteam)
             function gradientForSubteam(subteam) {
-                switch ((subteam || "").toLowerCase()) {
-                    case "programming":
-                        return "linear-gradient(135deg, #2563eb 0%, #3b82f6 100%)";
-                    case "mechanics":
-                        return "linear-gradient(135deg, #f59e0b 0%, #f472b6 100%)";
-                    case "controls":
-                        return "linear-gradient(135deg, #10b981 0%, #34d399 100%)";
-                    case "marketing":
-                        return "linear-gradient(135deg, #a855f7 0%, #ec4899 100%)";
-                    default:
-                        return "linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%)";
-                }
+                return "linear-gradient(135deg, #D4AF37 0%, #FFD700 100%)";
             }
 
             // Capitalize each word in a string
@@ -237,6 +227,46 @@
                     .join("");
                 area.innerHTML = "";
                 area.appendChild(grid);
+
+                // Try to load photos for each member
+                loadAvatarsFromPhotos();
+            }
+
+            // Load avatars from photos if they exist
+            function loadAvatarsFromPhotos() {
+                const cards = document.querySelectorAll('.team-card');
+                cards.forEach((card) => {
+                    const nameDiv = card.querySelector('.name');
+                    if (!nameDiv) return;
+                    const name = nameDiv.textContent.trim();
+
+                    const avatarDiv = card.querySelector('.avatar');
+                    if (!avatarDiv) return;
+
+                    // Try different extensions
+                    const extensions = ['png', 'jpg', 'jpeg'];
+                    tryLoadImage(name, extensions, 0, avatarDiv);
+                });
+            }
+
+            function tryLoadImage(name, extensions, index, avatarDiv) {
+                if (index >= extensions.length) {
+                    return; // No image found, keep the gradient
+                }
+
+                const ext = extensions[index];
+                const imgPath = `/src/photos/team/${name}.${ext}`;
+                const img = new Image();
+                img.onload = function() {
+                    // Image exists, use it as background
+                    avatarDiv.style.background = `url('${imgPath}') center/cover no-repeat`;
+                    avatarDiv.textContent = ''; // Remove initials text
+                };
+                img.onerror = function() {
+                    // Try next extension
+                    tryLoadImage(name, extensions, index + 1, avatarDiv);
+                };
+                img.src = imgPath;
             }
 
             // Rank helper for sorting
