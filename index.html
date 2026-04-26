@@ -27,6 +27,7 @@
             type="image/x-icon"
             href="src/photos/logo/favicon_io/favicon.ico"
         />
+        <link rel="stylesheet" href="src/baseline.css" />
         <link rel="stylesheet" href="src/styles.css" />
         <link rel="stylesheet" href="src/footer.css" />
         <meta
@@ -54,35 +55,27 @@
         />
     </head>
     <body>
-        <header role="banner">
-            <div class="parallax"></div>
-            <div><h1 class="title"></h1></div>
-        </header>
-        <nav role="navigation">
-            <div style="text-align: center" class="sponsor-bar">
-                <img
-                    src="/src/photos/logo/Banner.png"
-                    alt="The Blender Bots"
-                    style="height: 25px; width: auto; margin-left: 15px"
-                />
-                <div>
-                    <a href="/index.html#robots">robots</a>
-                    <a href="/index.html#sponsors">sponsors</a>
-                    <a href="/index.html#outreach">outreach</a>
-                    <a href="/index.html#contact">contact us</a>
-                </div>
-                <div class="sponsor-bar-inner">
-                    <button
-                        class="cta-btn"
-                        type="button"
-                        aria-label="Support Blender Bots for sponsorships"
-                        onclick="location.href = '/src/sponsorUs.html'"
-                    >
-                        Support Us
-                    </button>
-                </div>
-            </div>
-        </nav>
+        <div id="shared-header"></div>
+        <script>
+            (function () {
+                fetch("/src/header.html")
+                    .then((r) => r.text())
+                    .then((html) => {
+                        document.getElementById("shared-header").innerHTML =
+                            html;
+                        const btn = document.querySelector(".shared-cta");
+                        const isSponsor =
+                            location.pathname.endsWith("sponsorUs.html");
+                        if (btn) {
+                            btn.textContent = isSponsor ? "Home" : "Support Us";
+                            btn.onclick = () =>
+                                isSponsor
+                                    ? (location.href = "/index.html")
+                                    : (location.href = "/src/sponsorUs.html");
+                        }
+                    });
+            })();
+        </script>
         <div class="content">
             <section id="about" class="about opacity-transition">
                 <h2>Who are we</h2>

@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <title>Sponsor | Blender Bots</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -25,6 +26,8 @@
             type="image/x-icon"
             href="../src/photos/logo/favicon_io/favicon.ico"
         />
+        <link rel="stylesheet" href="baseline.css" />
+        <link rel="stylesheet" href="styles.css" />
         <link rel="stylesheet" href="sponsorUs.css" />
         <!-- Open Graph -->
         <meta property="og:title" content="Sponsor Us | Blender Bots" />
@@ -56,65 +59,60 @@
         />
     </head>
     <body>
-        <header role="banner">
-            <div class="parallax"></div>
-            <h1 class="title"></h1>
-        </header>
-        <nav role="navigation">
-            <div style="text-align: center" class="sponsor-bar">
-                <img
-                    src="/src/photos/logo/Banner.png"
-                    alt="The Blender Bots"
-                    style="height: 25px; width: auto; margin-left: 15px"
-                />
-                <div>
-                    <a href="/index.html#robots">robots</a>
-                    <a href="/index.html#sponsors">sponsors</a>
-                    <a href="/index.html#outreach">outreach</a>
-                    <a href="/index.html#contact">contact us</a>
-                </div>
-                <div class="sponsor-bar-inner">
-                    <button
-                        class="cta-btn"
-                        type="button"
-                        aria-label="Support Blender Bots for sponsorships"
-                        onclick="location.href = '/index.html'"
-                    >
-                        Home
-                    </button>
-                </div>
-            </div>
-        </nav>
-
-        <h2>Why sponsor us</h2>
-        <p>
-            The Blender Bots are a unique and dedicated team. We persevere
-            despite the many challenges we've encountered, such as financial
-            issues, having few mentors from the industry, and being a title one
-            public school. This means we have to make international efforts to
-            secure funding for ourselves. We are proud to be a student-run team.
-            We've held on to our objectives and continued to be passionate in
-            our individual roles.
-        </p>
-        <p>
-            We have drastically improved this year, and even people like
-            Principal Nguyen have noted our achievements. Principal Nguyen says,
-            "In recognition of remarkable growth, as a program and a team, the
-            Blender Bots of Del Mar High School, more than doubled their
-            membership, guided new members through training, and delivered their
-            strongest competition season to date" at a board meeting. This
-            demonstrates how people have been noticing us, which has inspired
-            more people to join our club, and we need more financial support now
-            to best serve our team.
-        </p>
-        <p>
-            We are only getting better with time and are teaching our teammates
-            how to work in a STEM environment, but there is only so much we can
-            do with our current resources. Please donate to help us be the best
-            team we can be.
-        </p>
-        <h2>How to sponsor us</h2>
-        <p>Contact us at <a href="">____@____.com</a> and thank you so much</p>
+        <div id="shared-header"></div>
+        <script>
+            (function () {
+                fetch("/src/header.html")
+                    .then((r) => r.text())
+                    .then((html) => {
+                        document.getElementById("shared-header").innerHTML =
+                            html;
+                        const btn = document.querySelector(".shared-cta");
+                        const isSponsor =
+                            location.pathname.endsWith("sponsorUs.html");
+                        if (btn) {
+                            btn.textContent = isSponsor ? "Home" : "Support Us";
+                            btn.onclick = () =>
+                                isSponsor
+                                    ? (location.href = "/index.html")
+                                    : (location.href = "/src/sponsorUs.html");
+                        }
+                    });
+            })();
+        </script>
+        <div class="content">
+            <h2>Why sponsor us</h2>
+            <p>
+                The Blender Bots are a unique and dedicated team. We persevere
+                despite the many challenges we've encountered, such as financial
+                issues, having few mentors from the industry, and being a title
+                one public school. This means we have to make international
+                efforts to secure funding for ourselves. We are proud to be a
+                student-run team. We've held on to our objectives and continued
+                to be passionate in our individual roles.
+            </p>
+            <p>
+                We have drastically improved this year, and even people like
+                Principal Nguyen have noted our achievements. Principal Nguyen
+                says, "In recognition of remarkable growth, as a program and a
+                team, the Blender Bots of Del Mar High School, more than doubled
+                their membership, guided new members through training, and
+                delivered their strongest competition season to date" at a board
+                meeting. This demonstrates how people have been noticing us,
+                which has inspired more people to join our club, and we need
+                more financial support now to best serve our team.
+            </p>
+            <p>
+                We are only getting better with time and are teaching our
+                teammates how to work in a STEM environment, but there is only
+                so much we can do with our current resources. Please donate to
+                help us be the best team we can be.
+            </p>
+            <h2>How to sponsor us</h2>
+            <p>
+                Contact us at <a href="">____@____.com</a> and thank you so much
+            </p>
+        </div>
         <footer role="footer">
             <div>
                 <ul>

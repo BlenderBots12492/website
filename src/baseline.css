@@ -1,0 +1,62 @@
+/* Shared baseline for navigation and parallax across pages */
+:root {
+    --nav-height: 40px;
+    --nav-logo-height: 25px;
+    --neon-yellow: #f8f005;
+}
+
+/* Ensure main content isn't hidden behind the fixed top navigation */
+.content {
+    padding-top: 60px;
+}
+
+/* NAVBAR baseline */
+.sponsor-bar {
+    height: var(--nav-height) !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+html { font-size: 16px; }
+/* Normalize nav font sizing across pages for consistency */
+.sponsor-bar a {
+    font-family: "Inter", sans-serif;
+    font-size: 0.95rem;
+    line-height: 40px;
+}
+.cta-btn.shared-cta {
+    min-width: 120px;
+    white-space: nowrap;
+}
+/* Mobile adjustments: hide section links on small viewports to declutter header. */
+@media (max-width: 768px) {
+    .sponsor-bar > div:nth-child(2) { display: none; }
+}
+.sponsor-bar > img {
+    height: var(--nav-logo-height) !important;
+    width: auto;
+}
+.sponsor-bar-inner {
+    display: flex;
+    align-items: center;
+}
+
+/* PARALLAX baseline */
+.parallax {
+    background-color: #111; /* Fallback color */
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("/src/photos/team-photo.webp");
+    min-height: 80vh;
+    background-attachment: fixed;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    border-bottom: 4px solid var(--neon-yellow);
+    box-shadow: 0 0 20px var(--neon-yellow);
+}
+@media (min-width: 1024px) {
+    /* no override for baseline on large screens */
+}

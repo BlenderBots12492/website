@@ -6,6 +6,9 @@
     --neon-yellow: #f8f005;
     --bg-black: #0a0a0a;
     --light-gray: #ccc;
+    /* Unified navigation sizing across pages (mobile baseline) */
+    --nav-height: 40px;
+    --nav-logo-height: 25px;
 }
 
 /* ========================================
@@ -50,20 +53,25 @@ body::before {
 /* ========================================
    HEADER / PARALLAX
    ======================================== */
-.parallax {
-    background-color: #111;
-    background-image:
-        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url("/src/photos/team-photo.webp");
-    min-height: 80vh;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
+/* Revert to original large-screen parallax behavior */
+/* No extra min-height overrides on large screens in this revert */
+@media (min-width: 1024px) {
+    .parallax {
+        background-color: #111;
+        background-image:
+            linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+            url("/src/photos/team-photo.webp");
+        min-height: 80vh;
+        background-attachment: fixed;
+    background-position: center bottom;
+        background-repeat: no-repeat;
     background-size: cover;
-    position: relative;
-    border-bottom: 4px solid var(--neon-yellow);
-    box-shadow: 0 0 20px var(--neon-yellow);
+        position: relative;
+        border-bottom: 4px solid var(--neon-yellow);
+        box-shadow: 0 0 20px var(--neon-yellow);
+    }
 }
+/* large screens retain parallax look from above rules */
 
 .title {
     position: absolute;
@@ -206,7 +214,7 @@ body::before {
     z-index: 10;
     border-bottom: 1px solid rgba(248, 240, 5, 0.2);
     padding: 2px 0;
-    height: 40px;
+    height: var(--nav-height, 40px);
 }
 .sponsor-bar a {
     color: white;
@@ -543,6 +551,36 @@ h1 {
     .outreach-item img {
         width: 100%;
         max-width: 100%;
+    }
+}
+
+/* Ensure nav bar logo height matches across pages */
+.sponsor-bar > img {
+    height: var(--nav-logo-height, 25px);
+    width: auto;
+}
+.sponsor-bar > img.nav-logo {
+    height: var(--nav-logo-height, 25px);
+    width: auto;
+    margin-left: 15px;
+}
+
+/* Normalize navigation sizing across pages on mobile */
+@media (max-width: 768px) {
+    /* Ensure the sponsor bar remains a consistent height and content remains aligned */
+    nav[role="navigation"] .sponsor-bar,
+    .sponsor-bar {
+        height: 40px;
+        align-items: center;
+    }
+    /* Constrain logo height to keep bar compact */
+    .sponsor-bar > img {
+        height: 25px !important;
+        width: auto !important;
+    }
+    /* Tighten horizontal spacing for mobile tap targets */
+    .sponsor-bar a {
+        margin: 0 6px;
     }
 }
 

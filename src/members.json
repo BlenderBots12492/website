@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Joseph",
+    "years": ["24-25", "25-26"],
+    "roles": ["lead programmer", "vice president"],
+    "subteam": "programming",
+    "bio": "VERY VERY handsome",
+    "team": "Blender Bots"
+  },
+  {
+    "name": "Santi B.",
+    "years": ["25-26"],
+    "roles": [],
+    "subteam": "programming",
+    "bio": "Has done absolutely nothing for the team",
+    "team": "Blender Bots"
+  },
+  {
+    "name": "Niranjan",
+    "years": ["24-25", "25-26"],
+    "roles": [],
+    "subteam": "mechanics",
+    "bio": "By a mile the best robotics member",
+    "team": "Blender Bots"
+  },
+  {
+    "name": "Adrian",
+    "years": ["23-24", "24-25", "25-26"],
+    "roles": ["lead mechanic", "president"],
+    "subteam": "mechanics",
+    "bio": "Has done absolutely nothing for the team",
+    "team": "Blender Bots"
+  }
+]
