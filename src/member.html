@@ -1,0 +1,25 @@
+<head> </head>
+<body>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const memberName = params.get("member");
+        console.log("memberName=", memberName);
+
+        const member = fetch("/src/members.json")
+            .then((res) => {
+                if (!res.ok)
+                    throw new Error("Failed to load members: " + res.status);
+                return res.json();
+            })
+            .then((members) => {
+                if (!Array.isArray(members))
+                    throw new Error("members is not an array");
+
+                let member =
+                    members.find((m) => m && m.name === memberName) ?? null;
+                if (!member) alert("Team Member not found!");
+                return member;
+            });
+        member;
+    </script>
+</body>
