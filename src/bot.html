@@ -1,820 +1,297 @@
 <!doctype html>
-<html
-    lang="en"
-    style="
-        background-color: #111;
-        /*background-image: linear-gradient(to bottom right, #111, #222, #111);*/
-    "
->
+<html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Robot | Blender Bots</title>
-        <meta name="description" content="The Blender Bots High School team's web page.">
-        <link rel="icon" type="image/png" sizes="32x32" href="../src/photos/logo/favicon_io/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="../src/photos/logo/favicon_io/favicon-16x16.png" />
-        <link rel="icon" type="image/x-icon" href="../src/photos/logo/favicon_io/favicon.ico" />
-        <!-- Open Graph -->
-        <meta property="og:title" content="Robot Profile | Blender Bots">
-        <meta property="og:description" content="View detailed robot profiles, specs, and build information from the Blender Bots FTC team.">
-        <meta property="og:type" content="website">
-        <meta property="og:url" content="https://blenderbots12492.github.io/src/bot.html">
-        <meta property="og:image" content="https://blenderbots12492.github.io/src/photos/team-photo.webp">
-        <!-- Twitter Card -->
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="Robot Profile | Blender Bots">
-        <meta name="twitter:description" content="View detailed robot profiles, specs, and build information from the Blender Bots FTC team.">
-
+        <title>Robots | Blender Bots</title>
+        <meta name="description" content="The Blender Bots FTC robotics team robot profile page." />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
             rel="stylesheet"
         />
-        <link rel="stylesheet" href="bot.css" />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/src/photos/logo/favicon_io/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/src/photos/logo/favicon_io/favicon-16x16.png"
+        />
+        <link
+            rel="icon"
+            type="image/x-icon"
+            href="/src/photos/logo/favicon_io/favicon.ico"
+        />
+        <link rel="stylesheet" href="/src/baseline.css" />
+        <link rel="stylesheet" href="/src/footer.css" />
+        <link rel="stylesheet" href="/src/bot-page.css" />
+        <meta property="og:title" content="Robots | Blender Bots" />
+        <meta property="og:description" content="The robot profile page for Blender Bots FTC team." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://blenderbots12492.github.io/src/bot.html" />
+        <meta property="og:image" content="https://blenderbots12492.github.io/src/photos/team-photo.webp" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Robots | Blender Bots" />
+        <meta name="twitter:description" content="The robot profile page for Blender Bots FTC team." />
     </head>
     <body>
-        <div class="page">
-            <header class="page-header">
-                <a class="back" href="../index.html">&larr; Back</a>
-                <div class="crumbs">
-                    <span class="crumb-label">FTC Robotics</span>
-                    <span class="crumb-divider">&bull;</span>
-                    <span class="crumb-team">The Blender Bots</span>
-                </div>
-            </header>
+        <div id="shared-header"></div>
+        <script>
+            function normalizeImagePath(src) {
+                if (!src) return "";
+                if (src.startsWith("http://") || src.startsWith("https://")) return src;
+                if (src.startsWith("/")) return src;
+                return "/src/" + src.replace(/^\/+/, "");
+            }
 
-            <main class="bot-layout">
-                <section class="bot-text">
-                    <p class="label">Robot Profile</p>
-                    <h1
-                        class="ascii-text bot-title glitch decrypt animated-content"
-                        data-text=""
-                        data-speed="40"
-                        data-max="12"
-                        data-delay="140"
-                        id="botName"
-                    ></h1>
-                    <p class="description animated-content" id="des"></p>
-                    <p
-                        class="variant-text animated-content"
-                        id="variantText"
-                    ></p>
-                    <p class="notes animated-content" id="notes"></p>
+            function formatLabel(text) {
+                return text ? text.replace(/_/g, " ") : "";
+            }
+
+            function renderFallback(message) {
+                const title = document.querySelector("header h1.title");
+                if (title) title.textContent = "Robot profile unavailable";
+                const description = document.getElementById("robotSubTitle");
+                if (description)
+                    description.textContent = message ||
+                        "No robot data could be loaded. Please check the URL.";
+                document.getElementById("statsGrid").innerHTML = "";
+                document.getElementById("stackCards").innerHTML = "";
+                document.getElementById("timelineList").innerHTML = "";
+                document.getElementById("galleryGrid").innerHTML = "";
+            }
+
+            function loadHeader(robot) {
+                const headerContainer = document.getElementById("shared-header");
+                if (!headerContainer) return;
+                const parallax = headerContainer.querySelector(".parallax");
+                const title = headerContainer.querySelector(".title");
+                if (title) title.textContent = robot.heroTitle || robot.name || "Robot Profile";
+                const heroImage = normalizeImagePath(robot.image || robot.gallery?.[0]?.src);
+                if (parallax && heroImage) {
+                    parallax.style.backgroundImage = `linear-gradient(rgba(17, 17, 17, 0.88), rgba(17, 17, 17, 0.36)), url('${heroImage}')`;
+                }
+            }
+
+            window.addEventListener("DOMContentLoaded", function () {
+                fetch("/src/header.html")
+                    .then((r) => r.text())
+                    .then((html) => {
+                        document.getElementById("shared-header").innerHTML = html;
+                        const btn = document.querySelector(".shared-cta");
+                        if (btn) {
+                            btn.textContent = "Home";
+                            btn.onclick = () => (location.href = "/index.html");
+                        }
+                        const fadeIn = {
+                            items: [],
+                            add(element) {
+                                if (!element) return;
+                                element.classList.add("fade-ready");
+                                this.items.push(element);
+                            },
+                            check() {
+                                const viewport = window.innerHeight;
+                                this.items.forEach((element) => {
+                                    if (element.classList.contains("fade-visible")) return;
+                                    const rect = element.getBoundingClientRect();
+                                    if (rect.top < viewport - 80) {
+                                        void element.offsetWidth;
+                                        element.classList.add("fade-visible");
+                                    }
+                                });
+                            },
+                            init() {
+                                window.addEventListener("scroll", () => this.check(), { passive: true });
+                                window.addEventListener("resize", () => this.check());
+                            },
+                        };
+                        fadeIn.init();
+                        const params = new URLSearchParams(window.location.search);
+                        const botKey = params.get("bot");
+                        if (!botKey) {
+                            renderFallback("Missing ?bot= parameter in the URL.");
+                            return;
+                        }
+                        const robotPaths = [`/src/${botKey}.json`, `${botKey}.json`];
+                        function loadRobotProfile(index) {
+                            if (index >= robotPaths.length) {
+                                return Promise.reject(new Error("Robot JSON not found."));
+                            }
+                            return fetch(robotPaths[index], { cache: "no-store" }).then(
+                                (resp) => {
+                                    if (!resp.ok) {
+                                        return loadRobotProfile(index + 1);
+                                    }
+                                    return resp.json();
+                                },
+                            );
+                        }
+
+                        loadRobotProfile(0)
+                            .then((robot) => {
+                                if (!robot || !robot.name) {
+                                    throw new Error("Robot JSON not found.");
+                                }
+                                document.title = `${robot.heroTitle || robot.name} | Blender Bots`;
+                                loadHeader(robot);
+                                document.getElementById("robotName").textContent = robot.heroTitle || robot.name || "Robot";
+                                document.getElementById("robotSubTitle").textContent = robot.description || "";
+                                                const robotImageEl = document.getElementById("robotImage");
+                                if (robotImageEl) {
+                                    robotImageEl.src = normalizeImagePath(robot.image || robot.gallery?.[0]?.src || "");
+                                    robotImageEl.alt = robot.heroTitle || robot.name || "Robot image";
+                                }
+                                const statsGrid = document.getElementById("statsGrid");
+                                statsGrid.innerHTML = "";
+                                (robot.stats || []).forEach((stat) => {
+                                    const card = document.createElement("div");
+                                    card.className = "stat-card fade-ready";
+                                    card.innerHTML = `<span class="stat-label">${stat.label}</span><span class="stat-value">${stat.value}</span>`;
+                                    statsGrid.appendChild(card);
+                                    fadeIn.add(card);
+                                });
+                                const stackCards = document.getElementById("stackCards");
+                                stackCards.innerHTML = "";
+                                (robot.stack || []).forEach((item) => {
+                                    const card = document.createElement("div");
+                                    card.className = "card fade-ready";
+                                    card.innerHTML = `<h3>${item.title}</h3><p>${item.body}</p>`;
+                                    stackCards.appendChild(card);
+                                    fadeIn.add(card);
+                                });
+                                const timelineList = document.getElementById("timelineList");
+                                timelineList.innerHTML = "";
+                                (robot.timeline || []).forEach((entry) => {
+                                    const card = document.createElement("div");
+                                    card.className = "roadmap-card fade-ready";
+                                    card.innerHTML = `<div class="roadmap-step"><strong>${entry.year} · ${entry.title}</strong><p>${entry.detail || "No detail provided."}</p></div>`;
+                                    timelineList.appendChild(card);
+                                    fadeIn.add(card);
+                                });
+                                const galleryGrid = document.getElementById("galleryGrid");
+                                galleryGrid.innerHTML = "";
+                                (robot.gallery || []).forEach((image) => {
+                                    const figure = document.createElement("figure");
+                                    figure.className = "gallery-card fade-ready";
+                                    figure.innerHTML = `<img src="${normalizeImagePath(image.src)}" alt="${image.alt || robot.heroTitle || robot.name}" /><figcaption class="gallery-caption">${image.alt || "Robot image"}</figcaption>`;
+                                    galleryGrid.appendChild(figure);
+                                    fadeIn.add(figure);
+                                });
+                                requestAnimationFrame(() => fadeIn.check());
+                            })
+                            .catch((error) => {
+                                renderFallback(error.message);
+                            });
+                    });
+            });
+        </script>
+
+        <div class="content">
+            <div class="robot-shell">
+                <div class="hero-copy">
+                    <h1 id="robotName">Loading robot...</h1>
+                    <p class="robot-description" id="robotSubTitle">
+                        Loading robot details. If this page does not update, check the query string.
+                    </p>
+                </div>
+
+                <div class="robot-summary-grid">
+                    <section class="section quick-specs-section">
+                        <div class="section-header">
+                            <h2>Specifications</h2>
+                        </div>
+                        <div class="stats-grid" id="statsGrid"></div>
+                    </section>
+
+                    <section class="section capabilities-panel">
+                        <div class="section-header">
+                            <h2>Technologies Used</h2>
+                        </div>
+                        <div class="grid-cards" id="stackCards"></div>
+                    </section>
+                </div>
+
+                <section class="section">
+                    <div class="section-header">
+                        <h2>Events</h2>
+                    </div>
+                    <div class="roadmap-grid" id="timelineList"></div>
                 </section>
 
-                <div class="bot-media">
-                    <div class="glow-frame">
-                        <img
-                            id="image"
-                            alt="Robot image"
-                            class="animated-content"
-                        />
+                <section class="section">
+                    <div class="section-header">
+                        <h2>Gallery</h2>
                     </div>
-                </div>
-            </main>
-
-            <section class="badge-section">
-                <div
-                    class="section-heading ascii-text glitch-hover"
-                    data-text="Quick Badges"
-                >
-                    Quick Badges
-                </div>
-                <div class="badge-row" id="badgeRow"></div>
-            </section>
-
-            <section class="stats-section">
-                <div
-                    class="stats-title ascii-text animated-content glitch-hover"
-                    data-text="Quick Specs"
-                >
-                    Quick Specs
-                </div>
-                <div class="stats-grid" id="statsGrid"></div>
-            </section>
-
-            <section class="stack-section">
-                <div
-                    class="stack-title ascii-text glitch-hover"
-                    data-text="Capabilities Stack"
-                >
-                    Capabilities Stack
-                </div>
-                <div class="stack" id="stackCards"></div>
-            </section>
-
-            <section class="telemetry-section">
-                <div
-                    class="section-heading ascii-text glitch-hover"
-                    data-text="Vitals"
-                >
-                    Vitals
-                </div>
-                <div class="telemetry-grid" id="telemetryGrid"></div>
-            </section>
-
-            <section class="checklist-section">
-                <div
-                    class="section-heading ascii-text glitch-hover"
-                    data-text="Match Checklist"
-                >
-                    Match Checklist
-                </div>
-                <div class="checklist" id="checklist"></div>
-            </section>
-
-            <section class="timeline-section">
-                <div
-                    class="section-heading ascii-text glitch-hover"
-                    data-text="Build Timeline"
-                >
-                    Build Timeline
-                </div>
-                <div class="timeline" id="timeline"></div>
-            </section>
-
-            <section class="stepper-section">
-                <div
-                    class="section-heading ascii-text glitch-hover"
-                    data-text="Build Steps"
-                >
-                    Build Steps
-                </div>
-                <div class="stepper" id="stepper"></div>
-            </section>
-
-            <section class="plays-section">
-                <div
-                    class="section-heading ascii-text glitch-hover"
-                    data-text="Playbook"
-                >
-                    Playbook
-                </div>
-                <div class="play-grid" id="playbook"></div>
-            </section>
-
-            <section class="gallery-section">
-                <div
-                    class="section-heading ascii-text glitch-hover"
-                    data-text="Photo Rail"
-                >
-                    Photo Rail
-                </div>
-                <div class="gallery-grid" id="galleryGrid"></div>
-            </section>
-        </div>
-
-        <div class="photo-modal" id="photoModal" aria-hidden="true">
-            <div class="photo-modal-backdrop" id="photoModalBackdrop"></div>
-            <div class="photo-modal-content">
-                <button class="photo-close" id="photoClose" aria-label="Close">
-                    &times;
-                </button>
-                <img id="photoModalImg" alt="Expanded gallery image" />
-                <div class="photo-caption" id="photoModalCaption"></div>
-                <button
-                    class="photo-nav prev"
-                    id="photoPrev"
-                    aria-label="Previous"
-                >
-                    &#10094;
-                </button>
-                <button class="photo-nav next" id="photoNext" aria-label="Next">
-                    &#10095;
-                </button>
+                    <div class="gallery-grid" id="galleryGrid"></div>
+                </section>
             </div>
         </div>
 
-        <script>
-            (function () {
-                const decryptChars =
-                    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_+";
-                const decryptState = new WeakMap();
-
-                function setupDecrypt(el, options = {}) {
-                    if (!el) return;
-                    const state = decryptState.get(el) || {};
-                    state.speed =
-                        parseInt(el.dataset.speed, 10) || options.speed || 50;
-                    state.max =
-                        parseInt(el.dataset.max, 10) || options.max || 10;
-                    state.text = (
-                        options.text ||
-                        el.dataset.text ||
-                        el.textContent ||
-                        ""
-                    ).trim();
-                    state.delay = Number.isFinite(
-                        parseInt(el.dataset.delay, 10),
-                    )
-                        ? parseInt(el.dataset.delay, 10)
-                        : options.delay;
-                    clearInterval(state.interval);
-                    decryptState.set(el, state);
-
-                    const randomize = (revealCount) =>
-                        state.text
-                            .split("")
-                            .map((char, i) => {
-                                if (char === " ") return " ";
-                                if (i < revealCount) return state.text[i];
-                                return decryptChars[
-                                    Math.floor(
-                                        Math.random() * decryptChars.length,
-                                    )
-                                ];
-                            })
-                            .join("");
-
-                    const start = () => {
-                        clearInterval(state.interval);
-                        let iteration = 0;
-                        state.interval = setInterval(() => {
-                            el.textContent = randomize(iteration);
-                            iteration += state.text.length / state.max;
-                            if (iteration >= state.text.length) {
-                                clearInterval(state.interval);
-                                el.textContent = state.text;
-                            }
-                        }, state.speed);
-                    };
-
-                    const reset = () => {
-                        clearInterval(state.interval);
-                        el.textContent = state.text;
-                    };
-
-                    if (!state.bound) {
-                        el.addEventListener("mouseenter", start);
-                        el.addEventListener("mouseleave", reset);
-                        state.bound = true;
-                    }
-
-                    const delay = Number.isFinite(state.delay)
-                        ? state.delay
-                        : (options.index ?? 0) * 120;
-                    setTimeout(start, Math.max(0, delay || 0));
-                }
-
-                const fallbackImage =
-                    "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&q=80&w=1200";
-                const params = new URLSearchParams(window.location.search);
-                const botKey = params.get("bot");
-                const nameEl = document.getElementById("botName");
-                const descEl = document.getElementById("des");
-                const imageEl = document.getElementById("image");
-                const variantEl = document.getElementById("variantText");
-                const stackEl = document.getElementById("stackCards");
-                const statsEl = document.getElementById("statsGrid");
-                const notesEl = document.getElementById("notes");
-                const badgesEl = document.getElementById("badgeRow");
-                const telemetryEl = document.getElementById("telemetryGrid");
-                const checklistEl = document.getElementById("checklist");
-                const timelineEl = document.getElementById("timeline");
-                const stepperEl = document.getElementById("stepper");
-                const playsEl = document.getElementById("playbook");
-                const galleryEl = document.getElementById("galleryGrid");
-                const body = document.body;
-                const defaultFeatures = {
-                    badges: true,
-                    stats: true,
-                    stack: true,
-                    telemetry: true,
-                    checklist: true,
-                    timeline: true,
-                    stepper: true,
-                    plays: true,
-                    gallery: true,
-                };
-
-                setupDecrypt(nameEl, { index: 0 });
-                document.querySelectorAll(".decrypt").forEach((el, idx) => {
-                    if (el === nameEl) return;
-                    setupDecrypt(el, { index: idx + 1 });
-                });
-
-                const observer = new IntersectionObserver(
-                    (entries) => {
-                        entries.forEach((entry) => {
-                            if (entry.isIntersecting)
-                                entry.target.classList.add("visible");
-                        });
-                    },
-                    { threshold: 0.35 },
-                );
-
-                if (!botKey) {
-                    nameEl.textContent = "Robot not found";
-                    descEl.textContent =
-                        "Add ?bot=NAME to the URL so we know which profile to load.";
-                    imageEl.src = fallbackImage;
-                    return;
-                }
-
-                applyTheme(botKey);
-
-                const dataSources = [
-                    `${botKey}.json`,
-                    `https://blenderbots12492.github.io/src/${botKey}.json`,
-                ];
-
-                const fallbackData = {
-                    badges: [],
-                    telemetry: [],
-                    checklist: [],
-                    timeline: [],
-                    stepper: { current: 0, steps: [] },
-                    plays: [],
-                    gallery: [],
-                    features: { ...defaultFeatures },
-                };
-
-                loadProfile(0);
-
-                function loadProfile(index) {
-                    const rawSource = dataSources[index];
-                    const source = `${rawSource}${rawSource.includes("?") ? "&" : "?"}v=${Date.now()}`;
-                    fetch(source, { cache: "no-store" })
-                        .then((resp) => {
-                            if (!resp.ok)
-                                throw new Error(
-                                    `No profile found at ${source}`,
-                                );
-                            return resp.json();
-                        })
-                        .then(renderProfile)
-                        .catch((err) => {
-                            console.warn(err);
-                            if (index + 1 < dataSources.length) {
-                                loadProfile(index + 1);
-                                return;
-                            }
-                            handleFailure(err);
-                        });
-                }
-
-                function renderProfile(data) {
-                    const features = {
-                        ...defaultFeatures,
-                        ...(data.features || {}),
-                    };
-                    const botName = data.name || botKey.replace(/_/g, " ");
-                    const heroTitle = data.heroTitle || botName;
-                    applyTheme(
-                        botKey,
-                        data.theme,
-                        data.glitch,
-                        data.background,
-                    );
-                    document.title = `${botName} | Blender Bots`;
-                    nameEl.textContent = heroTitle;
-                    nameEl.setAttribute("data-text", heroTitle);
-                    setupDecrypt(nameEl, { text: heroTitle, index: 0 });
-                    descEl.textContent = data.description || "";
-                    notesEl.textContent = data.notes || "";
-                    notesEl.style.display = data.notes ? "block" : "none";
-                    setImage(data.image || fallbackImage);
-                    startVariants(data.variants || []);
-                    renderBadges(features.badges, data.badges || []);
-                    renderStats(features.stats, data.stats || []);
-                    renderStack(features.stack, data.stack || []);
-                    renderTelemetry(features.telemetry, data.telemetry || []);
-                    renderChecklist(features.checklist, data.checklist || []);
-                    renderTimeline(features.timeline, data.timeline || []);
-                    renderStepper(
-                        features.stepper,
-                        data.stepper || fallbackData.stepper,
-                    );
-                    renderPlays(features.plays, data.plays || []);
-                    renderGallery(features.gallery, data.gallery || []);
-                    renderProfileShadow(
-                        data.background.colors.tone1 || "yellow",
-                    );
-                }
-
-                function handleFailure(err) {
-                    console.error(err);
-                    nameEl.textContent = "Profile unavailable";
-                    nameEl.setAttribute("data-text", "Profile unavailable");
-                    setupDecrypt(nameEl, {
-                        text: "Profile unavailable",
-                        index: 0,
-                    });
-                    descEl.textContent = "";
-                    setImage(fallbackImage);
-                    startVariants([]);
-                    renderBadges(true, []);
-                    renderStats(true, []);
-                    renderStack(true, []);
-                    renderTelemetry(true, []);
-                    renderChecklist(true, []);
-                    renderTimeline(true, []);
-                    renderStepper(true, fallbackData.stepper);
-                    renderPlays(true, []);
-                    renderGallery(true, []);
-                }
-
-                function renderProfileShadow(color) {
-                    document.getElementsByClassName(
-                        "bot-layout",
-                    )[0].style.boxShadow = `0 0 10px ${color}`;
-                }
-
-                function setImage(src) {
-                    imageEl.src = src;
-                    imageEl.onload = () => imageEl.classList.add("loaded");
-                    imageEl.onerror = () => {
-                        if (src !== fallbackImage) {
-                            setImage(fallbackImage);
-                        }
-                    };
-                }
-
-                function startVariants(list) {
-                    if (!list || !list.length) return;
-                    let index = 0;
-                    variantEl.textContent = list[0];
-                    setInterval(() => {
-                        index = (index + 1) % list.length;
-                        variantEl.textContent = list[index];
-                        variantEl.classList.remove("pulse-text");
-                        void variantEl.offsetWidth;
-                        variantEl.classList.add("pulse-text");
-                    }, 2600);
-                }
-
-                function renderStack(enabled, items) {
-                    stackEl.innerHTML = "";
-                    const section = stackEl.closest(".stack-section");
-                    if (!enabled || !items.length) {
-                        section.style.display = "none";
-                        return;
-                    }
-                    section.style.display = "block";
-                    items.forEach((item, idx) => {
-                        const card = document.createElement("article");
-                        card.className = "stack-card animated-content";
-                        card.innerHTML = `<h3 class="glitch-hover" data-text="${item.title || "Capability"}">${item.title || "Capability"}</h3><p>${item.body || ""}</p>`;
-                        card.style.top = `${24 + idx * 24}px`;
-                        card.style.setProperty("--delay", `${120 * idx}ms`);
-                        stackEl.appendChild(card);
-                        observer.observe(card);
-                    });
-                }
-
-                function renderStats(enabled, items) {
-                    statsEl.innerHTML = "";
-                    const section = statsEl.closest(".stats-section");
-                    if (!enabled || !items.length) {
-                        section.style.display = "none";
-                        return;
-                    }
-                    section.style.display = "block";
-                    items.forEach((item, idx) => {
-                        const stat = document.createElement("div");
-                        stat.className = "stat animated-content";
-                        stat.style.setProperty("--delay", `${80 * idx}ms`);
-                        stat.innerHTML = `<span class="stat-label glitch-hover" data-text="${item.label || "Spec"}">${item.label || "Spec"}</span><span class="stat-value">${item.value || ""}</span>`;
-                        statsEl.appendChild(stat);
-                        observer.observe(stat);
-                    });
-                }
-
-                function renderBadges(enabled, items) {
-                    badgesEl.innerHTML = "";
-                    const section = badgesEl.closest(".badge-section");
-                    if (!enabled || !items.length) {
-                        section.style.display = "none";
-                        return;
-                    }
-                    section.style.display = "block";
-                    items.forEach((text, idx) => {
-                        const pill = document.createElement("span");
-                        pill.className = "badge-chip animated-content";
-                        pill.textContent = text;
-                        pill.style.setProperty("--delay", `${60 * idx}ms`);
-                        badgesEl.appendChild(pill);
-                        observer.observe(pill);
-                    });
-                }
-
-                function renderTelemetry(enabled, items) {
-                    telemetryEl.innerHTML = "";
-                    const section = telemetryEl.closest(".telemetry-section");
-                    if (!enabled || !items.length) {
-                        section.style.display = "none";
-                        return;
-                    }
-                    section.style.display = "grid";
-                    items.forEach((item, idx) => {
-                        const fill = Math.min(
-                            100,
-                            Math.max(0, item.fill ?? 65),
-                        );
-                        const card = document.createElement("div");
-                        card.className = "telemetry-card animated-content";
-                        card.style.setProperty("--delay", `${70 * idx}ms`);
-                        card.innerHTML = `
-                        <div class="telemetry-label">${item.label || "Metric"}</div>
-                        <div class="telemetry-value">${item.value || ""}</div>
-                        <div class="telemetry-bar"><span style="width:${fill}%"></span></div>
-                    `;
-                        telemetryEl.appendChild(card);
-                        observer.observe(card);
-                    });
-                }
-
-                function renderChecklist(enabled, items) {
-                    checklistEl.innerHTML = "";
-                    const section = checklistEl.closest(".checklist-section");
-                    if (!enabled || !items.length) {
-                        section.style.display = "none";
-                        return;
-                    }
-                    section.style.display = "grid";
-                    items.forEach((item, idx) => {
-                        const card = document.createElement("div");
-                        card.className = `check-card animated-content status-${item.status || "todo"}`;
-                        card.style.setProperty("--delay", `${60 * idx}ms`);
-                        card.innerHTML = `
-                        <div class="check-status"></div>
-                        <div class="check-text">${item.item || ""}</div>
-                        <div class="check-tag">${(item.status || "todo").toUpperCase()}</div>
-                    `;
-                        checklistEl.appendChild(card);
-                        observer.observe(card);
-                    });
-                }
-
-                function renderTimeline(enabled, items) {
-                    timelineEl.innerHTML = "";
-                    const section = timelineEl.closest(".timeline-section");
-                    if (!enabled || !items.length) {
-                        section.style.display = "none";
-                        return;
-                    }
-                    section.style.display = "block";
-                    items.forEach((item, idx) => {
-                        const row = document.createElement("div");
-                        row.className = "timeline-item animated-content";
-                        row.style.setProperty("--delay", `${90 * idx}ms`);
-                        row.innerHTML = `
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-meta">
-                            <span class="timeline-year">${item.year || ""}</span>
-                            <h4>${item.title || ""}</h4>
-                            <p>${item.detail || ""}</p>
-                        </div>
-                    `;
-                        timelineEl.appendChild(row);
-                        observer.observe(row);
-                    });
-                }
-
-                function renderPlays(enabled, items) {
-                    playsEl.innerHTML = "";
-                    const section = playsEl.closest(".plays-section");
-                    if (!enabled || !items.length) {
-                        section.style.display = "none";
-                        return;
-                    }
-                    section.style.display = "grid";
-                    items.forEach((item, idx) => {
-                        const card = document.createElement("article");
-                        card.className = "play-card animated-content";
-                        card.style.setProperty("--delay", `${70 * idx}ms`);
-                        card.innerHTML = `
-                        <div class="play-top">
-                            <span class="play-time">${item.time || ""}</span>
-                            <span class="play-title glitch-hover" data-text="${item.title || "Play"}">${item.title || "Play"}</span>
-                        </div>
-                        <p>${item.detail || ""}</p>
-                    `;
-                        playsEl.appendChild(card);
-                        observer.observe(card);
-                    });
-                }
-
-                function renderGallery(enabled, items) {
-                    galleryEl.innerHTML = "";
-                    const section = galleryEl.closest(".gallery-section");
-                    if (!enabled || !items.length) {
-                        section.style.display = "none";
-                        return;
-                    }
-                    section.style.display = "grid";
-                    galleryItems = items.map((item, idx) => {
-                        const figure = document.createElement("figure");
-                        figure.className = "gallery-item animated-content";
-                        figure.style.setProperty("--delay", `${60 * idx}ms`);
-                        const img = document.createElement("img");
-                        img.src = item.src || fallbackImage;
-                        img.alt = item.alt || "Gallery image";
-                        const caption = document.createElement("figcaption");
-                        caption.textContent = item.alt || "Gallery image";
-                        figure.appendChild(img);
-                        figure.appendChild(caption);
-                        figure.addEventListener("click", () =>
-                            openPhotoModal(idx),
-                        );
-                        galleryEl.appendChild(figure);
-                        observer.observe(figure);
-                        return { src: img.src, alt: caption.textContent };
-                    });
-                }
-
-                let galleryItems = [];
-                let currentPhoto = 0;
-
-                function openPhotoModal(index) {
-                    if (!galleryItems.length) return;
-                    currentPhoto = Math.max(
-                        0,
-                        Math.min(index, galleryItems.length - 1),
-                    );
-                    updatePhotoModal();
-                    photoModal.classList.add("open");
-                    photoModal.setAttribute("aria-hidden", "false");
-                    document.body.classList.add("no-scroll");
-                }
-
-                function closePhotoModal() {
-                    photoModal.classList.remove("open");
-                    photoModal.setAttribute("aria-hidden", "true");
-                    document.body.classList.remove("no-scroll");
-                }
-
-                function updatePhotoModal() {
-                    const item = galleryItems[currentPhoto];
-                    photoModalImg.src = item.src;
-                    photoModalImg.alt = item.alt || "Gallery image";
-                    photoModalCaption.textContent = item.alt || "";
-                }
-
-                function nextPhoto(delta = 1) {
-                    if (!galleryItems.length) return;
-                    currentPhoto =
-                        (currentPhoto + delta + galleryItems.length) %
-                        galleryItems.length;
-                    updatePhotoModal();
-                }
-
-                function renderStepper(enabled, stepper) {
-                    stepperEl.innerHTML = "";
-                    const section = stepperEl.closest(".stepper-section");
-                    if (
-                        !enabled ||
-                        !stepper ||
-                        !stepper.steps ||
-                        !stepper.steps.length
-                    ) {
-                        section.style.display = "none";
-                        return;
-                    }
-                    section.style.display = "block";
-                    const current = Math.max(
-                        0,
-                        Math.min(
-                            stepper.current ?? 0,
-                            stepper.steps.length - 1,
-                        ),
-                    );
-                    stepper.steps.forEach((step, idx) => {
-                        const node = document.createElement("div");
-                        const status =
-                            idx < current
-                                ? "done"
-                                : idx === current
-                                  ? "current"
-                                  : "todo";
-                        node.className = `stepper-node animated-content status-${status}`;
-                        node.style.setProperty("--delay", `${70 * idx}ms`);
-                        node.innerHTML = `
-                        <div class="stepper-dot"></div>
-                        <div class="stepper-meta">
-                            <div class="stepper-title">${step.title || "Step"}</div>
-                            <div class="stepper-desc">${step.detail || ""}</div>
-                        </div>
-                    `;
-                        stepperEl.appendChild(node);
-                        observer.observe(node);
-                    });
-                }
-
-                function applyTheme(
-                    key,
-                    themeData,
-                    glitchData,
-                    backgroundData,
-                ) {
-                    const bgDefaults = {
-                        colors: {
-                            tone1: "#00ffc8",
-                            tone2: "#ffb450",
-                            tone3: "#008cff",
-                            base: "#050505",
-                        },
-                    };
-                    const palettes = {
-                        AIM: {
-                            hue: "24deg",
-                            primary: "#f8f005",
-                            accent: "#fcd34d",
-                            magenta: "#facc15",
-                        },
-                        BUMBLE_BEE: {
-                            hue: "55deg",
-                            primary: "#fef08a",
-                            accent: "#fbbf24",
-                            magenta: "#f59e0b",
-                        },
-                        strugie: {
-                            hue: "90deg",
-                            primary: "#9ef49d",
-                            accent: "#c4ff9c",
-                            magenta: "#98fb98",
-                        },
-                    };
-                    const palette = themeData ||
-                        palettes[key] || {
-                            hue: "45deg",
-                            primary: "#f8f005",
-                            accent: "#f6e05e",
-                            magenta: "#fbbf24",
-                        };
-                    body.style.setProperty("--neon-yellow", palette.primary);
-                    body.style.setProperty("--neon-cyan", palette.accent);
-                    body.style.setProperty("--neon-magenta", palette.magenta);
-                    body.style.setProperty("--neon-pink", palette.primary);
-                    const glitch = glitchData || {};
-                    const glitchPrimary = glitch.primary || palette.accent;
-                    const glitchSecondary = glitch.secondary || palette.primary;
-                    body.style.setProperty("--glitch-primary", glitchPrimary);
-                    body.style.setProperty(
-                        "--glitch-secondary",
-                        glitchSecondary,
-                    );
-                    const glitchEnabled = glitch.enabled !== false;
-                    if (!glitchEnabled) {
-                        nameEl.classList.remove("glitch");
-                    } else {
-                        nameEl.classList.add("glitch");
-                    }
-                    const colorCfg =
-                        (typeof backgroundData === "object" &&
-                            backgroundData !== null &&
-                            backgroundData.colors) ||
-                        bgDefaults.colors;
-                    body.style.setProperty(
-                        "--bg-tone1",
-                        colorCfg.tone1 || bgDefaults.colors.tone1,
-                    );
-                    body.style.setProperty(
-                        "--bg-tone2",
-                        colorCfg.tone2 || bgDefaults.colors.tone2,
-                    );
-                    body.style.setProperty(
-                        "--bg-tone3",
-                        colorCfg.tone3 || bgDefaults.colors.tone3,
-                    );
-                    body.style.setProperty(
-                        "--bg-base",
-                        colorCfg.base || bgDefaults.colors.base,
-                    );
-                    body.style.background = "transparent";
-                }
-
-                document
-                    .querySelectorAll(".animated-content")
-                    .forEach((el, idx) => {
-                        el.style.setProperty("--delay", `${80 * idx}ms`);
-                        observer.observe(el);
-                    });
-
-                // Photo modal wiring
-                const photoModal = document.getElementById("photoModal");
-                const photoModalImg = document.getElementById("photoModalImg");
-                const photoModalCaption =
-                    document.getElementById("photoModalCaption");
-                const photoClose = document.getElementById("photoClose");
-                const photoPrev = document.getElementById("photoPrev");
-                const photoNext = document.getElementById("photoNext");
-                const photoModalBackdrop =
-                    document.getElementById("photoModalBackdrop");
-
-                photoClose.addEventListener("click", closePhotoModal);
-                photoPrev.addEventListener("click", () => nextPhoto(-1));
-                photoNext.addEventListener("click", () => nextPhoto(1));
-                photoModalBackdrop.addEventListener("click", closePhotoModal);
-                document.addEventListener("keydown", (e) => {
-                    if (photoModal.classList.contains("open")) {
-                        if (e.key === "Escape") closePhotoModal();
-                        if (e.key === "ArrowLeft") nextPhoto(-1);
-                        if (e.key === "ArrowRight") nextPhoto(1);
-                    }
-                });
-            })();
-        </script>
+        <footer>
+            <div>
+                <ul>
+                    <li><a href="mailto:">contact us</a></li>
+                    <li><a href="src/sponsorUs.html">sponsor us</a></li>
+                    <li>
+                        <a href="https://www.instagram.com/blenderbots/"
+                            ><svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                fill="currentColor"
+                                class="bi bi-instagram"
+                                viewBox="0 0 16 16"
+                            >
+                                <path
+                                    d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"
+                                /></svg
+                        ></a>
+                        <a href=""
+                            ><svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                fill="currentColor"
+                                class="bi bi-youtube"
+                                viewBox="0 0 16 16"
+                            >
+                                <path
+                                    d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.122C.002 7.343.01 6.6.064 5.78l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"
+                                /></svg
+                        ></a>
+                        <a href="https://ftcscout.org/teams/12492"
+                            ><svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                fill="currentColor"
+                                class="bi bi-binoculars-fill"
+                                viewBox="0 0 16 16"
+                            >
+                                <path
+                                    d="M4.5 1A1.5 1.5 0 0 0 3 2.5V3h4v-.5A1.5 1.5 0 0 0 5.5 1h-1zM7 4v1h2V4h4v.882a.5.5 0 0 0 .276.447l.895.447A1.5 1.5 0 0 1 15 7.118V13H9v-1.5a.5.5 0 0 1 .146-.354l.854-.853V9.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v.793l.854.853A.5.5 0 0 1 7 11.5V13H1V7.118a1.5 1.5 0 0 1 .83-1.342l.894-.447A.5.5 0 0 0 3 4.882V4h4zM1 14v.5A1.5 1.5 0 0 0 2.5 16h3A1.5 1.5 0 0 0 7 14.5V14H1zm8 0v.5a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5V14H9zm4-11H9v-.5A1.5 1.5 0 0 1 10.5 1h1A1.5 1.5 0 0 1 13 2.5V3z"
+                                /></svg
+                        ></a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <br />
+                <a href="/index.html"
+                    ><img
+                        alt="The Blender Bots"
+                        src="/src/photos/logo/Banner.png"
+                        loading="lazy"
+                        decoding="async"
+                /></a>
+            </div>
+        </footer>
     </body>
 </html>
