@@ -1,9 +1,7 @@
 {
   "name": "AIM",
   "heroTitle": "AIM",
-  "description": "had an auto aim feature using linear regression and April tags, was interesting because most successful robots that year had a hooded launcher not a parallel launcher",
   "image": "photos/DECODE1.png",
-  "variants": [],
   "stack": [
     {
       "title": "Vision",
@@ -22,33 +20,6 @@
       "body": "Used parallel launcher which is two wheels rotating opposite of each other that the ball is pushed through"
     }
   ],
-  "theme": {
-    "hue": "76deg",
-    "primary": "#ff8200",
-    "accent": "#ff6200",
-    "magenta": "#736e45",
-    "components": {
-      "bg": "rgba(115, 110, 69, 0.6)",
-      "border": "rgba(115, 110, 69, 0.16)",
-      "shadow": "0 12px 28px rgba(0,0,0,0.36)",
-      "solid": false
-    }
-  },
-  "glitch": {
-    "enabled": true,
-    "primary": "#ff8200",
-    "secondary": "#ff8200"
-  },
-  "features": {
-    "badges": false,
-    "stats": true,
-    "stack": true,
-    "telemetry": false,
-    "checklist": false,
-    "timeline": true,
-    "plays": true,
-    "gallery": true
-  },
   "stats": [
     { "label": "Drive", "value": "Mecanum Drive" },
     { "label": "Weight", "value": "~30 lbs" },
@@ -59,7 +30,7 @@
     { "label": "Auto", "value": "12 balls close, 3 balls far" },
     { "label": "Camera", "value": "Logitech webcam" },
     { "label": "Scoring", "value": "about 100 points solo" },
-    { "label": "Endgame", "value": "parks" }
+    { "label": "Endgame", "value": "parks in ~3 seconds" }
   ],
   "badges": [
     "huh",
@@ -103,17 +74,6 @@
       "detail": "at the end of quals we were third and at the end of tournament we were still third"
     }
   ],
-  "checklist": [
-    { "item": "non-active feature", "status": "non-active feature" }
-  ],
-  "telemetry": [
-    { "label": "Auto reliability", "value": "80%", "fill": 80 },
-    {
-      "label": "Cool feature want to use it just don't know what for",
-      "value": "disabled feature",
-      "fill": 0
-    }
-  ],
 
   "gallery": [
     {
@@ -132,14 +92,5 @@
       "src": "photos/DECODE4.png",
       "alt": "AIM"
     }
-  ],
-  "notes": "This robot gave us our best year yet",
-  "background": {
-    "colors": {
-      "tone1": "#543418",
-      "tone2": "#78471d",
-      "tone3": "#0c4d61",
-      "base": "#0c4d61"
-    }
-  }
+  ]
 }
