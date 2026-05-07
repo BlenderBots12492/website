@@ -1,54 +1,24 @@
 {
   "name": "BUMBLE BEE",
   "heroTitle": "Bumble Bee",
-  "description": "We had a pivoting arm setup with two slides a claw with three axis of motion",
   "image": "photos/INTO_THE_DEEP1.png",
-  "variants": ["Claw based Intake", "Level 2 hang"],
   "stack": [
     { "title": "Drive", "body": "Mecanum Drive" },
     { "title": "Intake", "body": "A claw with three axis of freedom" },
-    { "title": "Scoring", "body": "10 samples or X specimens" },
-    { "title": "Autonomous", "body": "1 sample or 3 specimens" }
+    { "title": "Gearbox", "body": "We could rotate around our heaver slides using a Gearbox with lots of torque" },
+    { "title": "Viper Slides", "body": "4 times extention with long viperslides that could rotate." }
   ],
-  "theme": {
-    "hue": "52deg",
-    "primary": "#fef08a",
-    "accent": "#fbbf24",
-    "magenta": "#f59e0b",
-    "components": {
-      "bg": "rgba(22, 17, 5, 0.62)",
-      "border": "rgba(255, 215, 115, 0.2)",
-      "shadow": "0 12px 28px rgba(0,0,0,0.36)",
-      "solid": false
-    }
-  },
-  "glitch": {
-    "enabled": true,
-    "primary": "#fbbf24",
-    "secondary": "#fef08a"
-  },
-  "features": {
-    "badges": false,
-    "stats": true,
-    "stack": true,
-    "telemetry": false,
-    "checklist": false,
-    "timeline": true,
-    "plays": false,
-    "gallery": true
-  },
   "stats": [
-    { "label": "Drive", "value": "Mecanum Drive" },
+    { "label": "Chassiss", "value": "Custom Machined Aluminum Chassiss with three gobilda opdometry pods, and gobilda macanum wheels" },
     {
       "label": "Drive Team",
       "value": "2 drivers + 1 coach + (optional) 1 human player"
     },
-    { "label": "Auto", "value": "3 Specimens or 1 sample" },
-    { "label": "Scoring", "value": "about 95 points solo" },
-    { "label": "Awards", "value": "design award" },
-    { "label": "Endgame", "value": "Level 2 hang" }
+    { "label": "Auto", "value": "3 Specimens or 1 sample, an experimental 2 sample auto that use the camera, was difficult due to the lack of intake" },
+    { "label": "Scoring", "value": "about 95 points solo, we had the ability to do either specimins or samples providing maximum flexibility with our partner" },
+    { "label": "Awards", "value": "Design Award 1st place" },
+    { "label": "Endgame", "value": "Level 1 hang early in the season" }
   ],
-  "badges": ["First Into the Deep robot", "Iteration heavy", "Level 2 hang"],
   "timeline": [
     {
       "year": "Sept 7  ",
@@ -78,27 +48,6 @@
       "detail": "We hosted a scrimmage with a few teams that did not move on from Leagues"
     }
   ],
-  "checklist": [
-    { "item": "Drive tuned", "status": "ready" },
-    { "item": "Autonomous working", "status": "ready" },
-    { "item": "Intake consistent", "status": "ready" },
-    { "item": "Scoring reliable", "status": "ready" },
-    { "item": "Endgame optimized", "status": "todo" },
-    { "item": "Advanced auto", "status": "todo" }
-  ],
-  "telemetry": [
-    { "label": "Cycle time", "value": "PLACEHOLDER", "fill": 70 },
-    { "label": "Auto reliability", "value": "PLACEHOLDER", "fill": 75 },
-    { "label": "Failure rate", "value": "PLACEHOLDER", "fill": 10 },
-    { "label": "Drive accuracy", "value": "PLACEHOLDER", "fill": 85 },
-    { "label": "Scoring success", "value": "PLACEHOLDER", "fill": 80 }
-  ],
-  "plays": [
-    { "title": "Auto Start", "time": "15s", "detail": "PLACEHOLDER" },
-    { "title": "Cycle 1", "time": "15s", "detail": "PLACEHOLDER" },
-    { "title": "Cycle 2", "time": "15s", "detail": "PLACEHOLDER" },
-    { "title": "Endgame", "time": "15s", "detail": "PLACEHOLDER" }
-  ],
   "gallery": [
     {
       "src": "photos/INTO_THE_DEEP1.png",
@@ -116,14 +65,5 @@
       "src": "photos/INTO_THE_DEEP4.png",
       "alt": "Chassis"
     }
-  ],
-  "notes": "Bumble Bee was our best robot yet, only beaten by AIM next year",
-  "background": {
-    "colors": {
-      "tone1": "#fef08a",
-      "tone2": "#fbbf24",
-      "tone3": "#f59e0b",
-      "base": "#050505"
-    }
-  }
+  ]
 }
