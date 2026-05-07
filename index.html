@@ -75,15 +75,6 @@
                         }
                     });
             })();
-            window.addEventListener("load", () => {
-                if (window.location.hash) {
-                    const target = document.querySelector(window.location.hash);
-                    if (target) {
-                        // Re-trigger the scroll once the banner/JS content is ready
-                        target.scrollIntoView();
-                    }
-                }
-            });
         </script>
         <div class="content">
             <section id="about" class="about opacity-transition">
@@ -203,42 +194,36 @@
                         </p>
                     </a>
                 </div>
-            </section>
-            <section id="sponsors" class="sponsors">
-                <h2 class="opacity-transition">Sponsors</h2>
-                <div class="sponsors-grid">
-                    <a
-                        class="sponsor-link"
-                        href="https://www.splunk.com/"
-                        target="_blank"
-                        >Splunk</a
-                    >
-                    <a
-                        class="sponsor-link"
-                        href="https://www.emotiv.com/"
-                        target="_blank"
-                        >Emotiv</a
-                    >
-                    <a
-                        class="sponsor-link"
-                        href="https://www.playingatlearning.org/"
-                        target="_blank"
-                        >Playing at Learning</a
-                    >
-                    <a
-                        class="sponsor-link"
-                        href="https://www.microsoft.com/"
-                        target="_blank"
-                        >Microsoft</a
-                    >
-                    <a
-                        class="sponsor-link"
-                        href="https://delmar.cuhsd.org/apps/pages/ptsa"
-                        target="_blank"
-                        >Del Mar PTSA</a
-                    >
-                </div>
-            </section>
+<section id="sponsors" class="sponsors">
+    <h2 class="opacity-transition">Sponsors</h2>
+    <div class="sponsors-grid">
+        
+        <a class="sponsor-link" href="https://www.splunk.com/" target="_blank" rel="noopener"  style = background:#ffffff;>
+            <img src="src/photos/Splunk.png" 
+                 alt="Splunk" loading="lazy">
+        </a>
+        
+        <a class="sponsor-link" href="https://www.emotiv.com/" target="_blank" rel="noopener" style = background:#ffffff;>
+            <img src="src/photos/EMOTIV.png" 
+                 alt="Emotiv" loading="lazy">
+        </a>
+        
+        <a class="sponsor-link" href="https://www.playingatlearning.org/" target="_blank" rel="noopener" style = background:#ffffff;>
+            <img src="src/photos/Playing.png" 
+                    alt="Playing at Learning" loading="lazy">
+        </a>
+        
+        <a class="sponsor-link" href="https://www.microsoft.com/" target="_blank" rel="noopener" style = background:#000000;>
+            <img src="src/photos/Micro.png" 
+                 alt="Microsoft" loading="lazy">
+        </a>
+        
+        <a class="sponsor-link" href="https://delmar.cuhsd.org/apps/pages/ptsa" target="_blank" rel="noopener" style = background:#000000;>
+            <img src="src/photos/Del_Mar_.png" 
+                    alt="Del Mar PTSA" loading="lazy">
+        </a>
+    </div>
+</section>
             <section id="outreach" class="outreach-section">
                 <div class="outreach-item opacity-transition">
                     <img
