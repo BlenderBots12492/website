@@ -198,10 +198,15 @@ body {
     font-weight: bold;
     margin: 5px;
 }
-.sponsor-bar a:hover {
-    transition: 0.5s;
-    color: yellow;
+.sponsors-grid img {
+    max-height: 70px;
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(30%); /* optional */
+    transition: all 0.3s;
 }
+
+
 
 .sponsor-bar-inner {
     text-align: center;
