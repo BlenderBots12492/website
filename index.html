@@ -75,6 +75,15 @@
                         }
                     });
             })();
+            window.addEventListener("load", () => {
+                if (window.location.hash) {
+                    const target = document.querySelector(window.location.hash);
+                    if (target) {
+                        // Re-trigger the scroll once the banner/JS content is ready
+                        target.scrollIntoView();
+                    }
+                }
+            });
         </script>
         <div class="content">
             <section id="about" class="about opacity-transition">
