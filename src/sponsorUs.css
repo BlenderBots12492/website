@@ -218,3 +218,35 @@ a {
 .sponsor-bar-link:hover::before {
     transform: scaleX(1);
 }
+.donate-btn-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
+}
+.donate-button {
+    font-size: 1em;
+    background: #222;
+    color: #ffd700;
+    border-width: 0px;
+    border-radius: 999px;
+    padding: 8px 18px;
+    font-weight: 800;
+    font-family: inherit;
+    cursor: pointer;
+    text-transform: none;
+    letter-spacing: 0.4px;
+    box-shadow: none;
+    transition:
+        transform 0.15s ease,
+        background 0.2s ease;
+}
+.donate-button:hover {
+    background: #333;
+    color: #ffd700;
+    transform: scale(1.05);
+}
+.donate-button:focus {
+    outline: none;
+}
