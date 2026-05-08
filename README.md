@@ -4,3 +4,6 @@ Website for 12492
 <a href="https://github.com/team-3482/team-3482.github.io/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=BlenderBots12492/BlenderBots12492.github.io" />
 </a>
+git add .
+git commit -m "your message"
+git push origin main
