@@ -229,8 +229,8 @@ a {
     font-size: 2em;
     background: #222;
     color: #ffd700;
-    border-width: 0px;
-    border-radius: 999px;
+    border-width: 99px;
+    border-radius: 15px;
     padding: 8px 18px;
     font-weight: 800;
     font-family: inherit;
