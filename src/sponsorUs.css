@@ -220,24 +220,25 @@ a {
 }
 .donate-btn-wrapper {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     margin-top: 10px;
+    margin-left: 20px;
     width: 100%;
 }
 .donate-button {
     font-size: 2em;
-    background: #222;
+    background: #171717;
     color: #ffd700;
-    border-width: 99px;
-    border-radius: 15px;
+    border-width: 0px;
+    border-radius: 8px;
     padding: 8px 18px;
     font-weight: 800;
     font-family: inherit;
     cursor: pointer;
     text-transform: none;
     letter-spacing: 0.4px;
-    box-shadow: none;
+    box-shadow: -10px 7px 15px 4px #000;
     transition:
         transform 0.15s ease,
         background 0.2s ease;

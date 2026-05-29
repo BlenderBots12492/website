@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <title>Sponsor | Blender Bots</title>
+        
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -63,8 +64,11 @@
         
         <div id="shared-header"></div>
         <!--hi joseph-->
-        <br>
-        <div class="donate-btn-wrapper">
+        <div class="content">
+            
+            <h2>Why sponsor us</h2>
+            
+            <div class="donate-btn-wrapper">
                 <a
                     class="donate-button"
                     href="https://cuhsd.graystep.com/Index.aspx#/780365/product/55817"
@@ -72,29 +76,7 @@
                     >Donate</a
                 >
             </div>
-        <script>
-            (function () {
-                fetch("/src/header.html")
-                    .then((r) => r.text())
-                    .then((html) => {
-                        document.getElementById("shared-header").innerHTML =
-                            html;
-                        const btn = document.querySelector(".shared-cta");
-                        const isSponsor =
-                            location.pathname.endsWith("sponsorUs.html");
-                        if (btn) {
-                            btn.textContent = isSponsor ? "Home" : "Support Us";
-                            btn.onclick = () =>
-                                isSponsor
-                                    ? (location.href = "/index.html")
-                                    : (location.href = "/src/sponsorUs.html");
-                        }
-                    });
-            })();
-        </script>
-        <div class="content">
-            
-            <h2>Why sponsor us</h2>
+            <br>
             <p>
                 The Blender Bots are a unique and dedicated team. We persevere
                 despite the many challenges we've encountered, such as financial
@@ -123,6 +105,28 @@
             </p>
             
         </div>
+        
+        <script>
+            (function () {
+                fetch("/src/header.html")
+                    .then((r) => r.text())
+                    .then((html) => {
+                        document.getElementById("shared-header").innerHTML =
+                            html;
+                        const btn = document.querySelector(".shared-cta");
+                        const isSponsor =
+                            location.pathname.endsWith("sponsorUs.html");
+                        if (btn) {
+                            btn.textContent = isSponsor ? "Home" : "Support Us";
+                            btn.onclick = () =>
+                                isSponsor
+                                    ? (location.href = "/index.html")
+                                    : (location.href = "/src/sponsorUs.html");
+                        }
+                    });
+            })();
+        </script>
+        
         <footer role="footer">
             <div>
                 <ul>
